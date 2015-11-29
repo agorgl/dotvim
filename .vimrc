@@ -74,7 +74,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Load plugins
 NeoBundle 'artur-shaik/vim-javacomplete2'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'bpowell/vim-android'
+NeoBundle 'hsanson/vim-android'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'jiangmiao/auto-pairs'
