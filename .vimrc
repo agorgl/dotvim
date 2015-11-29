@@ -46,7 +46,6 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set expandtab
-filetype plugin indent on
 
 " ================ Appearance ========================
 set encoding=utf-8
@@ -97,6 +96,9 @@ NeoBundleLazy 'artur-shaik/vim-javacomplete2', { 'filetypes': 'java' }
 NeoBundle 'xolox/vim-lua-ftplugin'
 
 call neobundle#end()
+
+" Filetype detection enable
+filetype plugin indent on
 
 " Check if we are missing plugin bundles
 NeoBundleCheck
