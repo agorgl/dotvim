@@ -72,11 +72,9 @@ set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Load plugins
-NeoBundle 'artur-shaik/vim-javacomplete2'
+
+" General
 NeoBundle 'bling/vim-airline'
-NeoBundle 'hsanson/vim-android'
-NeoBundle 'eagletmt/ghcmod-vim'
-NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/nerdtree'
@@ -85,8 +83,18 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'xolox/vim-lua-ftplugin'
 NeoBundle 'xolox/vim-misc'
+
+" Haskell
+NeoBundleLazy 'eagletmt/ghcmod-vim', { 'filetypes': 'haskell' }
+NeoBundleLazy 'eagletmt/neco-ghc', { 'filetypes': 'haskell' }
+
+" Java
+NeoBundleLazy 'hsanson/vim-android', { 'filetypes': 'java' }
+NeoBundleLazy 'artur-shaik/vim-javacomplete2', { 'filetypes': 'java' }
+
+" Lua
+NeoBundle 'xolox/vim-lua-ftplugin'
 
 call neobundle#end()
 
