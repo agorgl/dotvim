@@ -89,7 +89,6 @@ NeoBundleLazy 'eagletmt/ghcmod-vim', { 'filetypes': 'haskell' }
 NeoBundleLazy 'eagletmt/neco-ghc', { 'filetypes': 'haskell' }
 
 " Java
-NeoBundleLazy 'hsanson/vim-android', { 'filetypes': 'java' }
 NeoBundleLazy 'artur-shaik/vim-javacomplete2', { 'filetypes': 'java' }
 
 " Lua
