@@ -78,6 +78,7 @@ NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'SirVer/ultisnips'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'tpope/vim-surround'
@@ -110,6 +111,7 @@ fun! TrimWhitespace()
 endfun
 
 " ================ Plugins Conf ======================
+set runtimepath+=$HOME/.vim/conf/plugins
 for f in split(glob('~/.vim/conf/plugins/*.vim'), '\n')
     exe 'source' f
 endfor
