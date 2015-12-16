@@ -47,6 +47,9 @@ set softtabstop=4
 set tabstop=4
 set expandtab
 
+" Unix line endings
+set fileformats=unix,dos
+
 " ================ Appearance ========================
 set encoding=utf-8
 set guifont=Consolas:h10                    " Set the font
