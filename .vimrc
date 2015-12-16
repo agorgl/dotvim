@@ -102,6 +102,21 @@ NeoBundleLazy 'vim-scripts/Conque-GDB', {
   \         { 'name': 'ConqueTermTab', 'complete': 'shellcmd' }
   \     ]
   \ }
+NeoBundleLazy 'Shougo/vimshell.vim', {
+  \ 'commands' : [
+  \         { 'name': 'VimShell', 'complete': 'customlist,vimshell#complete' },
+  \         { 'name': 'VimShellCreate', 'complete': 'customlist,vimshell#complete' },
+  \         { 'name': 'VimShellPop', 'complete': 'customlist,vimshell#complete' },
+  \         { 'name': 'VimShellTab', 'complete': 'customlist,vimshell#complete' },
+  \         { 'name': 'VimShellCurrentDir', 'complete': 'customlist,vimshell#complete' },
+  \         { 'name': 'VimShellBufferDir', 'complete': 'customlist,vimshell#complete' },
+  \         { 'name': 'VimShellExecute', 'complete': 'customlist,vimshell#helpers#vimshell_execute_complete' },
+  \         { 'name': 'VimShellInteractive', 'complete': 'customlist,vimshell#helpers#vimshell_execute_complete' },
+  \         { 'name': 'VimShellSendString' },
+  \         { 'name': 'VimShellSendBuffer' },
+  \         { 'name': 'VimShellClose' }
+  \     ]
+  \ }
 NeoBundleLazy 'Valloric/YouCompleteMe', {
   \ 'filetypes': ['c', 'cpp', 'cs', 'python', 'haskell'],
   \ 'build': {
