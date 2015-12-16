@@ -100,6 +100,7 @@ NeoBundle 'Shougo/vimproc.vim', {
   \     }
   \ }
 NeoBundle 'tikhomirov/vim-glsl'
+NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'xolox/vim-misc'
 NeoBundleLazy 'vim-scripts/Conque-GDB', {
