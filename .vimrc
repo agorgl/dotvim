@@ -70,6 +70,9 @@ endif
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
 
+" Increase the install timeout
+let g:neobundle#install_process_timeout = 1500
+
 " Load plugins
 
 " General
