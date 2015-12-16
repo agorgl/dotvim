@@ -83,7 +83,15 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+  \ 'build' : {
+  \            'windows': 'tools\\update-dll-mingw',
+  \            'cygwin': 'make -f make_cygwin.mak',
+  \            'mac': 'make',
+  \            'linux': 'make',
+  \            'unix': 'gmake'
+  \     }
+  \ }
 NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'xolox/vim-misc'
