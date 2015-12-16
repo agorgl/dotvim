@@ -102,7 +102,14 @@ NeoBundleLazy 'vim-scripts/Conque-GDB', {
   \         { 'name': 'ConqueTermTab', 'complete': 'shellcmd' }
   \     ]
   \ }
-NeoBundleLazy 'Valloric/YouCompleteMe', { 'filetypes': ['c', 'cpp', 'cs', 'python', 'haskell'] }
+NeoBundleLazy 'Valloric/YouCompleteMe', {
+  \ 'filetypes': ['c', 'cpp', 'cs', 'python', 'haskell'],
+  \ 'build': {
+  \           'windows': 'install.py --clang-completer',
+  \           'unix': './install.py --clang-completer',
+  \           'mac': './install.py --clang-completer'
+  \     }
+  \ }
 
 " Haskell
 NeoBundleLazy 'eagletmt/ghcmod-vim', { 'filetypes': 'haskell' }
