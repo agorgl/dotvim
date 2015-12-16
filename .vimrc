@@ -94,7 +94,7 @@ NeoBundleLazy 'eagletmt/neco-ghc', { 'filetypes': 'haskell' }
 NeoBundleLazy 'artur-shaik/vim-javacomplete2', { 'filetypes': 'java' }
 
 " Lua
-NeoBundle 'xolox/vim-lua-ftplugin'
+NeoBundleLazy 'xolox/vim-lua-ftplugin', { 'filetypes': 'lua' }
 
 call neobundle#end()
 
