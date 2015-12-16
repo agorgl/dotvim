@@ -83,7 +83,6 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'xolox/vim-misc'
 NeoBundleLazy 'vim-scripts/Conque-GDB', {
   \     'commands': [
@@ -100,6 +99,7 @@ NeoBundleLazy 'vim-scripts/Conque-GDB', {
   \         { 'name': 'ConqueTermTab', 'complete': 'shellcmd' }
   \     ]
   \ }
+NeoBundleLazy 'Valloric/YouCompleteMe', { 'filetypes': ['c', 'cpp', 'cs', 'python', 'haskell'] }
 
 " Haskell
 NeoBundleLazy 'eagletmt/ghcmod-vim', { 'filetypes': 'haskell' }
