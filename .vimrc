@@ -47,6 +47,10 @@ set softtabstop=4
 set tabstop=4
 set expandtab
 
+" Natural splits
+set splitbelow
+set splitright
+
 " Unix line endings
 set fileformats=unix,dos
 
