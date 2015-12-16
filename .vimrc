@@ -85,6 +85,21 @@ NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'xolox/vim-misc'
+NeoBundleLazy 'vim-scripts/Conque-GDB', {
+  \     'commands': [
+  \         { 'name': 'ConqueGdb', 'complete': 'file' },
+  \         { 'name': 'ConqueGdbSplit', 'complete': 'file' },
+  \         { 'name': 'ConqueGdbVSplit', 'complete': 'file' },
+  \         { 'name': 'ConqueGdbTab', 'complete': 'file' },
+  \         { 'name': 'ConqueGdbExe', 'complete': 'file' },
+  \         { 'name': 'ConqueGdbDelete', 'complete': '' },
+  \         { 'name': 'ConqueGdbCommand', 'complete': '' },
+  \         { 'name': 'ConqueTerm', 'complete': 'shellcmd' },
+  \         { 'name': 'ConqueTermSplit', 'complete': 'shellcmd' },
+  \         { 'name': 'ConqueTermVSplit', 'complete': 'shellcmd' },
+  \         { 'name': 'ConqueTermTab', 'complete': 'shellcmd' }
+  \     ]
+  \ }
 
 " Haskell
 NeoBundleLazy 'eagletmt/ghcmod-vim', { 'filetypes': 'haskell' }
