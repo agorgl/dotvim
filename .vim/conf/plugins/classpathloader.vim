@@ -5,6 +5,9 @@
 function GatherClassPath()
     let classPath = []
     let androidSdkHome = $ANDROID_HOME
+    call add(classPath, "src")
+    call add(classPath, "test")
+    let classPath = classPath + glob("lib/**/*.jar", 1, 1)
     call add(classPath, "src/main/java")
     call add(classPath, androidSdkHome . '/' . "add-ons/addon-google_apis-google-23/libs/effects.jar")
     call add(classPath, androidSdkHome . '/' . "add-ons/addon-google_apis-google-23/libs/maps.jar")
