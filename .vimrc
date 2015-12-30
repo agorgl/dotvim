@@ -135,7 +135,7 @@ NeoBundleLazy 'Shougo/vimshell.vim', {
   \ }
 NeoBundleLazy 'Valloric/YouCompleteMe', {
   \ 'augroup': 'youcompletemeStart',
-  \ 'filetypes': ['c', 'cpp', 'cs', 'python', 'haskell', 'java'],
+  \ 'filetypes': ['c', 'cpp', 'cs', 'python', 'haskell', 'lua', 'java'],
   \ 'build': {
   \           'windows': 'install.py --clang-completer',
   \           'unix': './install.py --clang-completer',
@@ -152,6 +152,7 @@ NeoBundleLazy 'artur-shaik/vim-javacomplete2', { 'filetypes': 'java' }
 
 " Lua
 NeoBundleLazy 'xolox/vim-lua-ftplugin', { 'filetypes': 'lua' }
+NeoBundleLazy 'xolox/vim-lua-inspect', { 'filetypes': 'lua' }
 
 call neobundle#end()
 
