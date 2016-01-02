@@ -162,16 +162,14 @@ filetype plugin indent on
 " Check if we are missing plugin bundles
 NeoBundleCheck
 
-" ================ Custom commands ===================
-fun! TrimWhitespace()
-    let l:save_cursor = getpos('.')
-    %s/\s\+$//e
-    call setpos('.', l:save_cursor)
-endfun
-
 " ================ Plugins Conf ======================
 set runtimepath+=$HOME/.vim/conf/plugins
 for f in split(glob('~/.vim/conf/plugins/*.vim'), '\n')
     exe 'source' f
 endfor
 
+" ================ User Scripts ======================
+set runtimepath+=$HOME/.vim/conf/scripts
+for f in split(glob('~/.vim/conf/scripts/*.vim'), '\n')
+    exe 'source' f
+endfor
