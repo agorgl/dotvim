@@ -86,6 +86,7 @@ let g:neobundle#install_process_timeout = 1500
 NeoBundle 'bling/vim-airline'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'SirVer/ultisnips'
