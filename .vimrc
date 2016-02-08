@@ -86,6 +86,7 @@ let g:neobundle#install_process_timeout = 1500
 NeoBundle 'bling/vim-airline'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'rust-lang/rust.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
@@ -136,7 +137,7 @@ NeoBundleLazy 'Shougo/vimshell.vim', {
   \ }
 NeoBundleLazy 'Valloric/YouCompleteMe', {
   \ 'augroup': 'youcompletemeStart',
-  \ 'filetypes': ['c', 'cpp', 'cs', 'python', 'haskell', 'lua', 'java'],
+  \ 'filetypes': ['c', 'cpp', 'cs', 'haskell', 'lua', 'java', 'rust'],
   \ 'build': {
   \           'windows': 'install.py --clang-completer',
   \           'unix': './install.py --clang-completer',
