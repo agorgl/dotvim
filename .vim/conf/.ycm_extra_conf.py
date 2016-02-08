@@ -37,7 +37,7 @@ def FlagsForFile(filename, **kwargs):
     
     lang_specific_flags = \
     {
-        'cpp': ['-xc++', '-std=c++11'],
+        'cpp': ['-xc++', '-std=c++14'],
         'c'  : ['-xc']
     }
 
