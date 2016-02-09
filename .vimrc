@@ -83,7 +83,6 @@ let g:neobundle#install_process_timeout = 1500
 " Load plugins
 
 " General
-NeoBundle 'bling/vim-airline'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'rust-lang/rust.vim'
@@ -104,6 +103,8 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'xolox/vim-misc'
 NeoBundleLazy 'vim-scripts/Conque-GDB', {
   \     'commands': [
