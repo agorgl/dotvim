@@ -56,7 +56,12 @@ set fileformats=unix,dos
 
 " ================ Appearance ========================
 set encoding=utf-8
-set guifont=Consolas:h10                    " Set the font
+" Set the font
+if has('win32') || has('win64')
+    set guifont=Consolas:h10
+elseif has('gui_gtk2')
+    set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
+endif
 colorscheme molokai                         " Set the color scheme
 
 " ================ Gui options =======================
