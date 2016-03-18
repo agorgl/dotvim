@@ -11,6 +11,18 @@ fun! MakeUnixLineEndings()
     call setpos('.', l:save_cursor)
 endfun
 
+fun! ToSnakeCase()
+    :s#\C\(\<\u[a-z0-9]\+\|[a-z0-9]\+\)\(\u\)#\l\1_\l\2#g
+endfun
+
+fun! ToCamelCase()
+    :s#_\(\l\)#\u\1#g
+endfun
+
+fun! ToCapitalCamelCase()
+    :s#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g
+endfun
+
 function! ExpandCMacro()
   "get current info
   let l:macro_file_name = "__macroexpand__" . tabpagenr()
