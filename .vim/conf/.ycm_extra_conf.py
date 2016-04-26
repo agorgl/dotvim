@@ -26,29 +26,22 @@ def FindFileInClosestParent(filename, filepath):
     else:
         return None
 
-def FlagsForFile(filename, **kwargs):
-    data = kwargs['client_data']
-    filetype = data['&filetype']
+def ImplicitIncludes(srcfile):
+    startSearchPath = os.path.dirname(srcfile)
+    cfg = FindFileInClosestParent("shake.yml", startSearchPath)
+    if cfg is None:
+        cfg = FindFileInClosestParent("Makefile.conf", startSearchPath)
 
-    flags = [
-                '-Wall',
-                '-Wextra'
-            ]
+    implicitIncludes = ['include'] + glob.glob(os.path.dirname(cfg) + '/deps/*/include')
+    return implicitIncludes
 
-    lang_specific_flags = \
-    {
-        'cpp': ['-xc++', '-std=c++14'],
-        'c'  : ['-xc']
-    }
-
-    flags.extend(lang_specific_flags[filetype])
-
-    logger.info("Generating additionalIncludes for file: " + filename)
-    startSearchPath = os.path.dirname(filename)
-    #executable_dir = os.path.dirname(os.path.realpath(inspect.getfile(inspect.currentframe())))
+def IncludesFromYaml(srcfile):
+    startSearchPath = os.path.dirname(srcfile)
     shakeCfg = FindFileInClosestParent("shake.yml", startSearchPath)
-    logger.info("Found shakeCfg: " + shakeCfg)
+    if shakeCfg is None:
+        return None
 
+    logger.info("Found shakeCfg: " + shakeCfg)
     with open(shakeCfg, 'r') as stream:
         y = yaml.load(stream)
         logger.info(y)
@@ -56,13 +49,53 @@ def FlagsForFile(filename, **kwargs):
             additionalIncludes = y["AdditionalIncludes"]
         else:
             additionalIncludes = []
+    return additionalIncludes
 
-    includes = ['include'] + glob.glob(os.path.dirname(shakeCfg) + '/deps/*/include') + additionalIncludes
+def IncludesFromMakeCfg(srcfile):
+    startSearchPath = os.path.dirname(srcfile)
+    makeCfg = FindFileInClosestParent("Makefile.conf", startSearchPath)
+    if makeCfg is None:
+        return None
+    # TODO
+    return []
 
-    defines  = []
+def FlagsForFile(filename, **kwargs):
+    # Gather the source filetype
+    data = kwargs['client_data']
+    filetype = data['&filetype']
+
+    # Debug
+    #executable_dir = os.path.dirname(os.path.realpath(inspect.getfile(inspect.currentframe())))
+
+    # Common flags
+    flags = ['-Wall', '-Wextra']
+
+    # Language variant specific flags
+    lang_specific_flags = \
+    {
+        'cpp': ['-xc++', '-std=c++14'],
+        'c'  : ['-xc']
+    }
+    flags.extend(lang_specific_flags[filetype])
+
+    # Gather include directories for given source file
+    logger.info("Generating include directories for file: " + filename)
+
+    # Try parsing SBuild and then Makefile configuration if that fails
+    includes = ImplicitIncludes(filename)
+    sbuildIncludes = IncludesFromYaml(filename)
+    if sbuildIncludes is not None:
+        includes += sbuildIncludes
+    else:
+        makeIncludes = IncludesFromMakeCfg(filename)
+        if makeIncludes is not None:
+            includes += makeIncludes
 
     for i in includes:
         flags.append('-I' + i)
+
+    # Gather define flags
+    defines  = []
     for d in defines:
         flags.append('-D' + d)
 
