@@ -145,9 +145,9 @@ NeoBundleLazy 'Valloric/YouCompleteMe', {
   \ 'augroup': 'youcompletemeStart',
   \ 'filetypes': ['c', 'cpp', 'cs', 'haskell', 'lua', 'java', 'rust'],
   \ 'build': {
-  \           'windows': 'install.py --clang-completer',
-  \           'unix': './install.py --clang-completer',
-  \           'mac': './install.py --clang-completer'
+  \           'windows': 'python install.py --clang-completer --racer-completer',
+  \           'unix': './install.py --clang-completer --racer-completer',
+  \           'mac': './install.py --clang-completer --racer-completer'
   \     }
   \ }
 
