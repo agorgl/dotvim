@@ -1,6 +1,8 @@
 ""
 "" Syntastic options
 ""
+" Always stick any detected errors into the loclist
+let g:syntastic_always_populate_loc_list=1
 
 " Set ruby checker
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
