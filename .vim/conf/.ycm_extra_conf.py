@@ -30,7 +30,7 @@ def ImplicitIncludes(srcfile):
     startSearchPath = os.path.dirname(srcfile)
     cfg = FindFileInClosestParent("shake.yml", startSearchPath)
     if cfg is None:
-        cfg = FindFileInClosestParent("Makefile.conf", startSearchPath)
+        cfg = FindFileInClosestParent("config.mk", startSearchPath)
 
     implicitIncludes = ['include'] + glob.glob(os.path.dirname(cfg) + '/deps/*/include')
     return implicitIncludes
