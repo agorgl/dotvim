@@ -162,6 +162,9 @@ NeoBundleLazy 'artur-shaik/vim-javacomplete2', { 'filetypes': 'java' }
 NeoBundleLazy 'xolox/vim-lua-ftplugin', { 'filetypes': 'lua' }
 NeoBundleLazy 'xolox/vim-lua-inspect', { 'filetypes': 'lua' }
 
+" LaTeX
+NeoBundleLazy 'lervag/vimtex', { 'filetypes': 'tex' }
+
 call neobundle#end()
 
 " Filetype detection enable
