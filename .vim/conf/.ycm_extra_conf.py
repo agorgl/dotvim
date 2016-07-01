@@ -53,7 +53,7 @@ def IncludesFromYaml(srcfile):
 
 def IncludesFromMakeCfg(srcfile):
     startSearchPath = os.path.dirname(srcfile)
-    makeCfg = FindFileInClosestParent("Makefile.conf", startSearchPath)
+    makeCfg = FindFileInClosestParent("config.mk", startSearchPath)
     if makeCfg is None:
         return None
     # TODO
