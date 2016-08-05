@@ -2,7 +2,6 @@ import os
 import glob
 import logging
 import inspect
-import yaml
 
 logger = logging.getLogger( __name__ )
 
@@ -28,28 +27,10 @@ def FindFileInClosestParent(filename, filepath):
 
 def ImplicitIncludes(srcfile):
     startSearchPath = os.path.dirname(srcfile)
-    cfg = FindFileInClosestParent("shake.yml", startSearchPath)
-    if cfg is None:
-        cfg = FindFileInClosestParent("config.mk", startSearchPath)
+    cfg = FindFileInClosestParent("config.mk", startSearchPath)
 
     implicitIncludes = ['include'] + glob.glob(os.path.dirname(cfg) + '/deps/*/include')
     return implicitIncludes
-
-def IncludesFromYaml(srcfile):
-    startSearchPath = os.path.dirname(srcfile)
-    shakeCfg = FindFileInClosestParent("shake.yml", startSearchPath)
-    if shakeCfg is None:
-        return None
-
-    logger.info("Found shakeCfg: " + shakeCfg)
-    with open(shakeCfg, 'r') as stream:
-        y = yaml.load(stream)
-        logger.info(y)
-        if "AdditionalIncludes" in y:
-            additionalIncludes = y["AdditionalIncludes"]
-        else:
-            additionalIncludes = []
-    return additionalIncludes
 
 def IncludesFromMakeCfg(srcfile):
     startSearchPath = os.path.dirname(srcfile)
@@ -83,13 +64,9 @@ def FlagsForFile(filename, **kwargs):
 
     # Try parsing SBuild and then Makefile configuration if that fails
     includes = ImplicitIncludes(filename)
-    sbuildIncludes = IncludesFromYaml(filename)
-    if sbuildIncludes is not None:
-        includes += sbuildIncludes
-    else:
-        makeIncludes = IncludesFromMakeCfg(filename)
-        if makeIncludes is not None:
-            includes += makeIncludes
+    makeIncludes = IncludesFromMakeCfg(filename)
+    if makeIncludes is not None:
+        includes += makeIncludes
 
     for i in includes:
         flags.append('-I' + i)
