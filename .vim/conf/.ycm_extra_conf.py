@@ -37,8 +37,15 @@ def IncludesFromMakeCfg(srcfile):
     makeCfg = FindFileInClosestParent("config.mk", startSearchPath)
     if makeCfg is None:
         return None
-    # TODO
-    return []
+    # Read configuration file
+    with open(makeCfg, "r") as f:
+        data = f.readlines()
+    # Search for lines containing ADDINC and take space separated paths
+    incs = []
+    for line in data:
+        if "ADDINC" in line:
+            incs = line.split()[2:]
+    return incs
 
 def FlagsForFile(filename, **kwargs):
     # Gather the source filetype
