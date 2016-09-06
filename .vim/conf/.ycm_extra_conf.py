@@ -65,6 +65,8 @@ def FlagsForFile(filename, **kwargs):
         'c'  : ['-xc']
     }
     flags.extend(lang_specific_flags[filetype])
+    if os.name == 'nt':
+        flags.append("--target=i686-mingw32")
 
     # Gather include directories for given source file
     logger.info("Generating include directories for file: " + filename)
