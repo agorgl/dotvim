@@ -54,6 +54,12 @@ set splitright
 " Unix line endings
 set fileformats=unix,dos
 
+" ================ User Scripts ======================
+set runtimepath+=$HOME/.vim/conf/scripts
+for f in split(glob('~/.vim/conf/scripts/*.vim'), '\n')
+    exe 'source' f
+endfor
+
 " ================ Appearance ========================
 set encoding=utf-8
 " Set the font
@@ -63,6 +69,12 @@ elseif has('gui_gtk2')
     set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
 endif
 colorscheme molokai                         " Set the color scheme
+
+" Enable transparent background on terminals
+if !has("gui_running")
+    let g:nobg256 = 1
+    call EnableTransparentBg()
+endif
 
 " ================ Gui options =======================
 if has("gui_running")
@@ -176,11 +188,5 @@ NeoBundleCheck
 " ================ Plugins Conf ======================
 set runtimepath+=$HOME/.vim/conf/plugins
 for f in split(glob('~/.vim/conf/plugins/*.vim'), '\n')
-    exe 'source' f
-endfor
-
-" ================ User Scripts ======================
-set runtimepath+=$HOME/.vim/conf/scripts
-for f in split(glob('~/.vim/conf/scripts/*.vim'), '\n')
     exe 'source' f
 endfor
