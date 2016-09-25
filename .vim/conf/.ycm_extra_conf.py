@@ -35,6 +35,7 @@ def ImplicitIncludes(srcfile):
 def IncludesFromMakeCfg(srcfile):
     startSearchPath = os.path.dirname(srcfile)
     makeCfg = FindFileInClosestParent("config.mk", startSearchPath)
+    logger.info("Using configuration: " + makeCfg)
     if makeCfg is None:
         return None
     # Read configuration file
@@ -45,6 +46,8 @@ def IncludesFromMakeCfg(srcfile):
     for line in data:
         if "ADDINC" in line:
             incs = line.split()[2:]
+    # Make them absolute using the configuration file as a base
+    incs = map(lambda s : os.path.abspath(os.path.join(os.path.dirname(makeCfg), s)), incs)
     return incs
 
 def FlagsForFile(filename, **kwargs):
@@ -77,6 +80,7 @@ def FlagsForFile(filename, **kwargs):
     if makeIncludes is not None:
         includes += makeIncludes
 
+    logger.info("Using includes: " + str(includes))
     for i in includes:
         flags.append('-I' + i)
 
