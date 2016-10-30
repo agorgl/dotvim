@@ -163,6 +163,9 @@ NeoBundleLazy 'Valloric/YouCompleteMe', {
   \     }
   \ }
 
+" OpenCL
+NeoBundleLazy 'petRUShka/vim-opencl', { 'filetypes': 'opencl' }
+
 " Haskell
 NeoBundleLazy 'eagletmt/ghcmod-vim', { 'filetypes': 'haskell' }
 NeoBundleLazy 'eagletmt/neco-ghc', { 'filetypes': 'haskell' }
