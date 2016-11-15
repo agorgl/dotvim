@@ -2,6 +2,7 @@ import os
 import glob
 import logging
 import inspect
+import subprocess
 
 logger = logging.getLogger( __name__ )
 
@@ -14,7 +15,7 @@ def CSharpSolutionFile(filepath):
 
 def FindFileInClosestParent(filename, filepath):
     for root, dirs, files in os.walk(filepath):
-        logger.info("FindFileInClosestParent: In root: " + root + ", with dirs: " + ','.join(dirs) + " and files: " + ','.join(files))
+        #logger.info("FindFileInClosestParent: In root: " + root + ", with dirs: " + ','.join(dirs) + " and files: " + ','.join(files))
         for file in files:
             if file == filename:
                 return os.path.join(root, file)
@@ -25,30 +26,42 @@ def FindFileInClosestParent(filename, filepath):
     else:
         return None
 
-def ImplicitIncludes(srcfile):
-    startSearchPath = os.path.dirname(srcfile)
-    cfg = FindFileInClosestParent("config.mk", startSearchPath)
+def IncludesFromMake(makecfg):
+    # Retrieve makecfg relative path
+    subproj_path = os.path.dirname(os.path.relpath(makecfg, os.getcwd()))
+    # Handle top project case
+    if subproj_path == "":
+        subproj_path = "."
+    logger.info("Using subproject: " + subproj_path)
+    # Call makefile for include paths
+    output = subprocess.Popen(["make", "showincpaths_" + subproj_path], stdout=subprocess.PIPE).communicate()[0]
+    if output:
+        # Convert it to string
+        output = output.decode('utf8')
+        # Take the first line and make space separated string a list
+        incpaths = output.split('\n')[0].split()
+        logger.info("Got include paths for subproject with config \"" + makecfg + "\"" + ": " + str(incpaths))
+        # Make them absolute using the configuration file as a base
+        #incs = map(lambda s : os.path.abspath(os.path.join(os.path.dirname(makecfg), s)), incs)
+        return incpaths
+    return []
 
-    implicitIncludes = ['include'] + glob.glob(os.path.dirname(cfg) + '/deps/*/include')
-    return implicitIncludes
-
-def IncludesFromMakeCfg(srcfile):
-    startSearchPath = os.path.dirname(srcfile)
-    makeCfg = FindFileInClosestParent("config.mk", startSearchPath)
-    logger.info("Using configuration: " + makeCfg)
-    if makeCfg is None:
-        return None
-    # Read configuration file
-    with open(makeCfg, "r") as f:
-        data = f.readlines()
-    # Search for lines containing ADDINC and take space separated paths
-    incs = []
-    for line in data:
-        if "ADDINC" in line:
-            incs = line.split()[2:]
-    # Make them absolute using the configuration file as a base
-    incs = map(lambda s : os.path.abspath(os.path.join(os.path.dirname(makeCfg), s)), incs)
-    return incs
+def DefinesFromMake(makecfg):
+    # Retrieve makecfg relative path
+    subproj_path = os.path.dirname(os.path.relpath(makecfg, os.getcwd()))
+    # Handle top project case
+    if subproj_path == "":
+        subproj_path = "."
+    # Call makefile for include paths
+    output = subprocess.Popen(["make", "showdefines_" + subproj_path], stdout=subprocess.PIPE).communicate()[0]
+    if output:
+        # Convert it to string
+        output = output.decode('utf8')
+        # Take the first line and make space separated string a list
+        defines = output.split('\n')[0].strip().split()
+        logger.info("Got defines for subproject with config \"" + makecfg + "\"" + ": " + str(defines))
+        return defines
+    return []
 
 def FlagsForFile(filename, **kwargs):
     # Gather the source filetype
@@ -72,22 +85,23 @@ def FlagsForFile(filename, **kwargs):
         flags.append("--target=i686-mingw32")
 
     # Gather include directories for given source file
-    logger.info("Generating include directories for file: " + filename)
+    logger.info("Gathering include directories for file: " + filename)
 
-    # Try parsing SBuild and then Makefile configuration if that fails
-    includes = ImplicitIncludes(filename)
-    makeIncludes = IncludesFromMakeCfg(filename)
-    if makeIncludes is not None:
-        includes += makeIncludes
-
-    logger.info("Using includes: " + str(includes))
-    for i in includes:
-        flags.append('-I' + i)
-
-    # Gather define flags
-    defines  = []
-    for d in defines:
-        flags.append('-D' + d)
+    # Find closest project config file in parent directories
+    start_search_path = os.path.dirname(filename)
+    makecfg = FindFileInClosestParent("config.mk", start_search_path)
+    logger.info("Using configuration: " + makecfg)
+    if makecfg is not None:
+        # Get subproject include search path list
+        includes = IncludesFromMake(makecfg)
+        # Construct include search path flags
+        logger.info("Using includes: " + str(includes))
+        for i in includes:
+            flags.append('-I' + i)
+        # Get subproject define list
+        defines = DefinesFromMake(makecfg)
+        for d in defines:
+            flags.append('-D' + d)
 
     return {
         'flags': flags,
