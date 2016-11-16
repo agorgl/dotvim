@@ -68,13 +68,14 @@ if has('win32') || has('win64')
 elseif has('gui_gtk2')
     set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
 endif
+let g:rehash256 = 1                         " Molokai fix flag for 256 color terminals
 colorscheme molokai                         " Set the color scheme
 
 " Enable transparent background on terminals
-if !has("gui_running")
-    let g:nobg256 = 1
-    call EnableTransparentBg()
-endif
+"if !has("gui_running")
+"    let g:nobg256 = 1
+"    call EnableTransparentBg()
+"endif
 
 " ================ Gui options =======================
 if has("gui_running")
