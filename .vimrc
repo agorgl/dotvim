@@ -156,7 +156,7 @@ NeoBundleLazy 'Shougo/vimshell.vim', {
   \ }
 NeoBundleLazy 'Valloric/YouCompleteMe', {
   \ 'augroup': 'youcompletemeStart',
-  \ 'filetypes': ['c', 'cpp', 'cs', 'haskell', 'lua', 'java', 'rust'],
+  \ 'filetypes': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust'],
   \ 'build': {
   \           'windows': 'python install.py --clang-completer --racer-completer',
   \           'unix': './install.py --clang-completer --racer-completer',
