@@ -102,6 +102,7 @@ let g:neobundle#install_process_timeout = 1500
 
 " General
 NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'rust-lang/rust.vim'
 NeoBundle 'scrooloose/nerdcommenter'
