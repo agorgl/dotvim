@@ -1,5 +1,4 @@
 " Overrides for transparent terminals
-
 fun! EnableTransparentBg()
     if &t_Co > 255
         " Visual tweaks
@@ -60,3 +59,9 @@ fun! EnableTransparentBg()
         endif
     endif
 endfun
+
+" Make .h files C filetype by default
+augroup filetype_h
+    autocmd!
+    autocmd BufRead,BufNewFile *.h set filetype=c
+augroup END
