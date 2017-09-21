@@ -91,109 +91,83 @@ if has('win32') || has('win64')
 endif
 
 " ================ Startup ===========================
-" Load plugin manager
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Increase the install timeout
-let g:neobundle#install_process_timeout = 1500
-
-" Load plugins
+" Start plugin handling
+call plug#begin('~/.vim/bundle')
 
 " General
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'embear/vim-localvimrc'
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'kburdett/vim-nuuid'
-NeoBundle 'rust-lang/rust.vim'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'skywind3000/asyncrun.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'Chiel92/vim-autoformat'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-  \ 'build' : {
-  \            'windows': 'tools\\update-dll-mingw',
-  \            'cygwin': 'make -f make_cygwin.mak',
-  \            'mac': 'make',
-  \            'linux': 'make',
-  \            'unix': 'gmake'
-  \     }
-  \ }
-NeoBundle 'tikhomirov/vim-glsl'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'xolox/vim-misc'
-NeoBundleLazy 'vim-scripts/Conque-GDB', {
-  \     'commands': [
-  \         { 'name': 'ConqueGdb', 'complete': 'file' },
-  \         { 'name': 'ConqueGdbSplit', 'complete': 'file' },
-  \         { 'name': 'ConqueGdbVSplit', 'complete': 'file' },
-  \         { 'name': 'ConqueGdbTab', 'complete': 'file' },
-  \         { 'name': 'ConqueGdbExe', 'complete': 'file' },
-  \         { 'name': 'ConqueGdbDelete', 'complete': '' },
-  \         { 'name': 'ConqueGdbCommand', 'complete': '' },
-  \         { 'name': 'ConqueTerm', 'complete': 'shellcmd' },
-  \         { 'name': 'ConqueTermSplit', 'complete': 'shellcmd' },
-  \         { 'name': 'ConqueTermVSplit', 'complete': 'shellcmd' },
-  \         { 'name': 'ConqueTermTab', 'complete': 'shellcmd' }
+Plug 'airblade/vim-gitgutter'
+Plug 'embear/vim-localvimrc'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/vim-easy-align'
+Plug 'kien/ctrlp.vim'
+Plug 'kburdett/vim-nuuid'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'SirVer/ultisnips'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'Chiel92/vim-autoformat'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'tikhomirov/vim-glsl'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'xolox/vim-misc'
+Plug 'vim-scripts/Conque-GDB', {
+  \     'on': [
+  \         'ConqueGdb',
+  \         'ConqueGdbSplit',
+  \         'ConqueGdbVSplit',
+  \         'ConqueGdbTab',
+  \         'ConqueGdbExe',
+  \         'ConqueGdbDelete',
+  \         'ConqueGdbCommand',
+  \         'ConqueTerm',
+  \         'ConqueTermSplit',
+  \         'ConqueTermVSplit',
+  \         'ConqueTermTab',
   \     ]
   \ }
-NeoBundleLazy 'Shougo/vimshell.vim', {
-  \ 'commands' : [
-  \         { 'name': 'VimShell', 'complete': 'customlist,vimshell#complete' },
-  \         { 'name': 'VimShellCreate', 'complete': 'customlist,vimshell#complete' },
-  \         { 'name': 'VimShellPop', 'complete': 'customlist,vimshell#complete' },
-  \         { 'name': 'VimShellTab', 'complete': 'customlist,vimshell#complete' },
-  \         { 'name': 'VimShellCurrentDir', 'complete': 'customlist,vimshell#complete' },
-  \         { 'name': 'VimShellBufferDir', 'complete': 'customlist,vimshell#complete' },
-  \         { 'name': 'VimShellExecute', 'complete': 'customlist,vimshell#helpers#vimshell_execute_complete' },
-  \         { 'name': 'VimShellInteractive', 'complete': 'customlist,vimshell#helpers#vimshell_execute_complete' },
-  \         { 'name': 'VimShellSendString' },
-  \         { 'name': 'VimShellSendBuffer' },
-  \         { 'name': 'VimShellClose' }
+Plug 'Shougo/vimshell.vim', {
+  \ 'on' : [
+  \         'VimShell',
+  \         'VimShellCreate',
+  \         'VimShellPop',
+  \         'VimShellTab',
+  \         'VimShellCurrentDir',
+  \         'VimShellBufferDir',
+  \         'VimShellExecute',
+  \         'VimShellInteractive',
+  \         'VimShellSendString',
+  \         'VimShellSendBuffer',
+  \         'VimShellClose'
   \     ]
   \ }
-NeoBundleLazy 'Valloric/YouCompleteMe', {
-  \ 'augroup': 'youcompletemeStart',
-  \ 'filetypes': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust'],
-  \ 'build': {
-  \           'windows': 'python install.py --clang-completer --racer-completer',
-  \           'unix': './install.py --clang-completer --racer-completer',
-  \           'mac': './install.py --clang-completer --racer-completer'
-  \     }
+Plug 'Valloric/YouCompleteMe', {
+  \ 'for': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust'],
+  \ 'do': './install.py --system-libclang --clang-completer --racer-completer'
   \ }
-
 " OpenCL
-NeoBundleLazy 'petRUShka/vim-opencl', { 'filetypes': 'opencl' }
-
+Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
 " Haskell
-NeoBundleLazy 'eagletmt/ghcmod-vim', { 'filetypes': 'haskell' }
-NeoBundleLazy 'eagletmt/neco-ghc', { 'filetypes': 'haskell' }
-
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 " Java
-NeoBundleLazy 'artur-shaik/vim-javacomplete2', { 'filetypes': 'java' }
-
+Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 " Lua
-NeoBundleLazy 'xolox/vim-lua-ftplugin', { 'filetypes': 'lua' }
-
+Plug 'xolox/vim-lua-ftplugin', { 'for': 'lua' }
 " LaTeX
-NeoBundleLazy 'lervag/vimtex', { 'filetypes': 'tex' }
+Plug 'lervag/vimtex', { 'for': 'tex' }
 
-call neobundle#end()
+" End plugin handling
+call plug#end()
 
 " Filetype detection enable
 filetype plugin indent on
-
-" Check if we are missing plugin bundles
-NeoBundleCheck
 
 " ================ Plugins Conf ======================
 set runtimepath+=$HOME/.vim/conf/plugins
