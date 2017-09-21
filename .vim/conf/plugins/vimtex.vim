@@ -1,3 +1,6 @@
+""
+"" vimtex options
+""
 let g:vimtex_latexmk_build_dir = 'build'
 if has('win32')
 let g:vimtex_view_general_viewer = 'SumatraPDF'
