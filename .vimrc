@@ -101,6 +101,8 @@ let g:neobundle#install_process_timeout = 1500
 " Load plugins
 
 " General
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'embear/vim-localvimrc'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'kien/ctrlp.vim'
@@ -110,6 +112,8 @@ NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'SirVer/ultisnips'
+NeoBundle 'skywind3000/asyncrun.vim'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Chiel92/vim-autoformat'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/vimproc.vim', {
