@@ -1,30 +1,69 @@
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+"--------------------------------------------------------------
+" Sections:
+"   -> Plugins Manager Setup
+"   -> General
+"   -> Colors and Fonts
+"   -> User Interface
+"   -> Installed Plugins
+"   -> Misc
+"   -> Helper functions
+"   -> Plugins Configuration
+"   -> User Scripts
+"--------------------------------------------------------------
 
-" Set the vim user folder in windows to the %USERPROFILE%/.vim/
+"--------------------------------------------------------------
+" => Plugins Manager Setup (Vim-Plug)
+"--------------------------------------------------------------
+if has('vim_starting')
+    " Use Vim settings, rather then Vi settings (much better!).
+    " This must be first, because it changes other options as a side effect.
+    set nocompatible
+endif
+
 if has('win32') || has('win64')
+    " Set the vim user folder in Windows to the %USERPROFILE%/.vim/
     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
 
-" ================ General Config ====================
-set nowrap                                  " Don't wrap lines
-set autoread                                " Reload files changed outside vim
-set backspace=indent,eol,start              " Allow backspace in insert mode
-set number                                  " Show line numbers
-set showcmd                                 " Show incomplete cmds down the bottom
-set showmode                                " Show current mode down the bottom
+let vimplug_exists=expand('~/.vim/autoload/plug.vim')
+if !filereadable(vimplug_exists)
+    let vimplug_url='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    echom "Installing Vim-Plug..."
+    if executable('curl')
+        exec '!curl -fLo '.'~/.vim/autoload/plug.vim'.' --create-dirs '.vimplug_url
+    elseif executable('wget')
+        call mkdir(fnamemodify('~/.vim/autoload/plug.vim', ':h'), 'p')
+        exec '!wget --force-directories --no-check-certificate -O '.'~/.vim/autoload/plug.vim'.' '.vimplug_url
+    else
+        echom 'Could not download plugin manager. No plugins were installed'
+        finish
+    endif
+    autocmd VimEnter * PlugInstall
+endif
+
+"--------------------------------------------------------------
+" => General
+"--------------------------------------------------------------
+set nowrap                     " Don't wrap lines
+set autoread                   " Reload files changed outside vim
+set backspace=indent,eol,start " Allow backspace in insert mode
+set number                     " Show line numbers
+set showcmd                    " Show incomplete cmds down the bottom
+set showmode                   " Show current mode down the bottom
+set hlsearch                   " Highlight search terms
+set incsearch                  " Show search matches as you type
 
 " No sounds
-set noerrorbells visualbell t_vb=
+set noerrorbells
+set visualbell
+set t_vb=
 autocmd GUIEnter * set visualbell t_vb=
+
+" Filetype detection enable
+filetype plugin indent on
 
 " Enable syntax highlighting
 syntax on
-
-" Enable useful search options
-set hlsearch                                " Highlight search terms
-set incsearch                               " Show search matches as you type
 
 " Enable useful autocomplete for commands
 set wildmenu
@@ -33,43 +72,46 @@ set wildmode=list:longest,list:full
 " Remove preview window from autocompletion
 set completeopt-=preview
 
-" Turn Off Swap Files
+" Turn off swap and backup files
 set noswapfile
 set nobackup
 set nowb
 
 " Indentation
-set autoindent
-set smartindent
-set smarttab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-set expandtab
+set autoindent    " Copy indent from current line when starting a new line
+set smartindent   " Do smart autoindenting when starting a new line
+set smarttab      " When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'
+set shiftwidth=4  " Number of spaces to use for each step of (auto)indent
+set softtabstop=4 " Number of spaces that a <Tab> counts for while performing editing operations
+set tabstop=4     " Number of spaces that a <Tab> in the file counts for
+set expandtab     " Spaces instead of tabs
 
 " Natural splits
 set splitbelow
 set splitright
 
+"--------------------------------------------------------------
+" => Colors and Fonts
+"--------------------------------------------------------------
+" Set utf-8 as standard encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set bomb
+set binary
+
 " Unix line endings
 set fileformats=unix,dos
 
-" ================ User Scripts ======================
-set runtimepath+=$HOME/.vim/conf/scripts
-for f in split(glob('~/.vim/conf/scripts/*.vim'), '\n')
-    exe 'source' f
-endfor
-
-" ================ Appearance ========================
-set encoding=utf-8
-" Set the font
+" Set the GUI mode font
 if has('win32') || has('win64')
     set guifont=Consolas:h10
 elseif has('gui_gtk2')
     set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
 endif
-let g:rehash256 = 1                         " Molokai fix flag for 256 color terminals
-colorscheme molokai                         " Set the color scheme
+
+let g:rehash256 = 1 " Molokai fix flag for 256 color terminals
+colorscheme molokai " Set the color scheme
 
 " Enable transparent background on terminals
 "if !has("gui_running")
@@ -77,46 +119,72 @@ colorscheme molokai                         " Set the color scheme
 "    call EnableTransparentBg()
 "endif
 
-" ================ Gui options =======================
+"--------------------------------------------------------------
+" => User Interface
+"--------------------------------------------------------------
 if has("gui_running")
     "Strip unwanted window stuff
-    set guioptions-=m                       " Remove menu bar
-    set guioptions-=T                       " Remove toolbar
-    set guioptions-=r                       " Remove right-hand scroll bar
-    set guioptions-=L                       " Remove left-hand scroll bar
+    set guioptions-=m " Remove menu bar
+    set guioptions-=T " Remove toolbar
+    set guioptions-=r " Remove right-hand scroll bar
+    set guioptions-=L " Remove left-hand scroll bar
 endif
 
 if has('win32') || has('win64')
-    au GUIEnter * simalt ~x                 " Maximize gVim window
+    au GUIEnter * simalt ~x " Maximize gVim window
 endif
 
-" ================ Startup ===========================
+"--------------------------------------------------------------
+" => Installed Plugins
+"--------------------------------------------------------------
 " Start plugin handling
 call plug#begin('~/.vim/bundle')
 
-" General
+" Shows a git diff in the gutter (sign column) and stages/undoes hunks.
 Plug 'airblade/vim-gitgutter'
+" Search local vimrc files (".lvimrc") in the tree (root dir up to current dir) and load them
 Plug 'embear/vim-localvimrc'
+" Insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
+" Alignment plugin
 Plug 'junegunn/vim-easy-align'
+" Fuzzy file, buffer, mru, tag, etc finder
 Plug 'kien/ctrlp.vim'
+" Generates and inserts UUIDs
 Plug 'kburdett/vim-nuuid'
+" Configuration for rust
 Plug 'rust-lang/rust.vim'
+" Intensely orgasmic commenting
 Plug 'scrooloose/nerdcommenter'
+" A tree explorer
 Plug 'scrooloose/nerdtree'
+" Runs files through external syntax checkers and displays any resulting errors
 Plug 'scrooloose/syntastic'
+" Snippet plugin
 Plug 'SirVer/ultisnips'
+" Run async shell commands and output to quickfix window
 Plug 'skywind3000/asyncrun.vim'
+" Git wrapper
 Plug 'tpope/vim-fugitive'
+" Easy code formatting by integrating existing code formatters
 Plug 'Chiel92/vim-autoformat'
+" Keyword completion system by maintaining a cache of keywords in the current buffer
 Plug 'Shougo/neocomplete.vim'
+" Interactive command execution
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" Syntax highlighting for OpenGL Shading Language
 Plug 'tikhomirov/vim-glsl'
+" Asynchronous build and test dispatcher
 Plug 'tpope/vim-dispatch'
+" Provides mappings to easily delete, change and add surroundings in pairs
 Plug 'tpope/vim-surround'
+" Lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
+" Themes for vim-airline
 Plug 'vim-airline/vim-airline-themes'
+" Scripts that are used by most of the plugins yet don't really belong with any single one of the plug-ins
 Plug 'xolox/vim-misc'
+" GDB command line interface and terminal emulator
 Plug 'vim-scripts/Conque-GDB', {
   \     'on': [
   \         'ConqueGdb',
@@ -132,6 +200,7 @@ Plug 'vim-scripts/Conque-GDB', {
   \         'ConqueTermTab',
   \     ]
   \ }
+" Shell implemented inside Vim
 Plug 'Shougo/vimshell.vim', {
   \ 'on' : [
   \         'VimShell',
@@ -147,30 +216,83 @@ Plug 'Shougo/vimshell.vim', {
   \         'VimShellClose'
   \     ]
   \ }
+" A code-completion engine
 Plug 'Valloric/YouCompleteMe', {
   \ 'for': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust'],
   \ 'do': './install.py --system-libclang --clang-completer --racer-completer'
   \ }
-" OpenCL
+" Syntax checking and highlighting for OpenCL
 Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
-" Haskell
+" Happy Haskell programming
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+" Haskell completion plugin using ghc-mod
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-" Java
+" Java completion
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
-" Lua
+" Lua filetype plugin
 Plug 'xolox/vim-lua-ftplugin', { 'for': 'lua' }
-" LaTeX
+" LaTeX support plugin
 Plug 'lervag/vimtex', { 'for': 'tex' }
 
 " End plugin handling
 call plug#end()
 
-" Filetype detection enable
-filetype plugin indent on
+"--------------------------------------------------------------
+" => Misc
+"--------------------------------------------------------------
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-" ================ Plugins Conf ======================
+" Quickly open a buffer for scribble
+map <leader>q :e ~/buffer<cr>
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
+
+"--------------------------------------------------------------
+" => Helper functions
+"--------------------------------------------------------------
+" Trims trailing whitespace
+fun! TrimWhitespace()
+    let l:save_cursor = getpos('.')
+    %s/\s\+$//e
+    call setpos('.', l:save_cursor)
+endfun
+
+" Converts to Unix line endings
+fun! MakeUnixLineEndings()
+    let l:save_cursor = getpos('.')
+    %s/\r\(\n\)/\1/g
+    call setpos('.', l:save_cursor)
+endfun
+
+" Converts to snake_case
+fun! ToSnakeCase()
+    :s#\C\(\<\u[a-z0-9]\+\|[a-z0-9]\+\)\(\u\)#\l\1_\l\2#g
+endfun
+
+" Converts to camelCase
+fun! ToCamelCase()
+    :s#_\(\l\)#\u\1#g
+endfun
+
+" Converts to CapitalCamelCase
+fun! ToCapitalCamelCase()
+    :s#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g
+endfun
+
+"--------------------------------------------------------------
+" => Plugins Configuration
+"--------------------------------------------------------------
 set runtimepath+=$HOME/.vim/conf/plugins
 for f in split(glob('~/.vim/conf/plugins/*.vim'), '\n')
+    exe 'source' f
+endfor
+
+"--------------------------------------------------------------
+" => User Scripts
+"--------------------------------------------------------------
+set runtimepath+=$HOME/.vim/conf/scripts
+for f in split(glob('~/.vim/conf/scripts/*.vim'), '\n')
     exe 'source' f
 endfor
