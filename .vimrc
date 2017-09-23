@@ -97,8 +97,6 @@ set splitright
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
-set bomb
-set binary
 
 " Unix line endings
 set fileformats=unix,dos
