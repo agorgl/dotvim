@@ -28,6 +28,11 @@ fun! RunExtSplitLin(cmd)
     :exe ":Dispatch! " . fullcmd
 endfun
 
+fun! RunExtAsync(cmd)
+    :exe ":AsyncRun".' '.a:cmd
+    :copen
+endfun
+
 if has('win32')
 :command -nargs=1 RunExt call RunExtWin(<args>)
 :command -nargs=1 RunExtSplit call RunExtSplitWin(<args>)
@@ -40,3 +45,4 @@ endif
 :nnoremap <silent> <C-F5> :RunExtSplit g:clean_cmd<CR>
 :nnoremap <silent> <F6> :RunExt g:build_cmd<CR>
 :nnoremap <silent> <C-F6> :RunExt g:clean_cmd<CR>
+:nnoremap <silent> <F7> :call RunExtAsync(g:build_cmd)<CR>
