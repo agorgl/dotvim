@@ -148,6 +148,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'kien/ctrlp.vim'
+" Vim plugin for the Perl module / CLI script 'ack'
+Plug 'mileszs/ack.vim'
 " Generates and inserts UUIDs
 Plug 'kburdett/vim-nuuid'
 " Configuration for rust
