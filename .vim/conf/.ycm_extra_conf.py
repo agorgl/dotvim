@@ -90,8 +90,8 @@ def FlagsForFile(filename, **kwargs):
     # Find closest project config file in parent directories
     start_search_path = os.path.dirname(filename)
     makecfg = FindFileInClosestParent("config.mk", start_search_path)
-    logger.info("Using configuration: " + makecfg)
     if makecfg is not None:
+        logger.info("Using configuration: " + makecfg)
         # Get subproject include search path list
         includes = IncludesFromMake(makecfg)
         # Construct include search path flags
