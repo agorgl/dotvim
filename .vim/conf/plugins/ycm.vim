@@ -14,13 +14,10 @@ let g:ycm_goto_buffer_command = 'same-buffer'                       " Default: '
 let g:ycm_rust_src_path = substitute(system('rustc --print sysroot'), '\n\+$', '', '') . '/lib/rustlib/src/rust/src'
 
 " Force code intel
-nnoremap <F8> :YcmForceCompileAndDiagnostics <CR>
+nnoremap <F8> :YcmForceCompileAndDiagnostics<CR>
 
-" Go To Declaration
-nnoremap <C-F12> :YcmCompleter GoToDeclaration <CR>
-
-" Go To Definition
-nnoremap <F12> :YcmCompleter GoToDefinition <CR>
+" Go To
+nnoremap <F12> :YcmCompleter GoTo<CR>
 
 " Set popup menu colors
 exec 'hi Pmenu guifg=lightblue ' .
