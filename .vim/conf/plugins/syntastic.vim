@@ -7,6 +7,9 @@ let g:syntastic_always_populate_loc_list=1
 " Set ruby checker
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
+" Set rust checker
+let g:syntastic_rust_checkers = ['cargo']
+
 " Let background colors be the same as the background of our current theme
 let g:cur_gui_bg_col = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui')
 if empty(g:cur_gui_bg_col)

@@ -11,6 +11,7 @@ let g:ycm_confirm_extra_conf = 1                                    " Default: 1
 let g:ycm_extra_conf_globlist = ['~/.vim/conf/.ycm_extra_conf.py']  " Default: []
 let g:ycm_goto_buffer_command = 'same-buffer'                       " Default: 'same-buffer'
 " let g:ycm_semantic_triggers = {'haskell' : ['.']}
+let g:ycm_rust_src_path = substitute(system('rustc --print sysroot'), '\n\+$', '', '') . '/lib/rustlib/src/rust/src'
 
 " Force code intel
 nnoremap <F8> :YcmForceCompileAndDiagnostics <CR>
