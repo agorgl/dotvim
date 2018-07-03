@@ -200,22 +200,6 @@ Plug 'vim-scripts/Conque-GDB', {
   \         'ConqueTermTab',
   \     ]
   \ }
-" Shell implemented inside Vim
-Plug 'Shougo/vimshell.vim', {
-  \ 'on' : [
-  \         'VimShell',
-  \         'VimShellCreate',
-  \         'VimShellPop',
-  \         'VimShellTab',
-  \         'VimShellCurrentDir',
-  \         'VimShellBufferDir',
-  \         'VimShellExecute',
-  \         'VimShellInteractive',
-  \         'VimShellSendString',
-  \         'VimShellSendBuffer',
-  \         'VimShellClose'
-  \     ]
-  \ }
 " A code-completion engine
 Plug 'Valloric/YouCompleteMe', {
   \ 'for': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust'],
