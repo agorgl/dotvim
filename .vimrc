@@ -155,7 +155,7 @@ Plug 'kburdett/vim-nuuid'
 " Configuration for rust
 Plug 'rust-lang/rust.vim'
 " Intensely orgasmic commenting
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 " A tree explorer
 Plug 'scrooloose/nerdtree'
 " Runs files through external syntax checkers and displays any resulting errors
