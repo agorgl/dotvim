@@ -202,8 +202,8 @@ Plug 'vim-scripts/Conque-GDB', {
   \ }
 " A code-completion engine
 Plug 'Valloric/YouCompleteMe', {
-  \ 'for': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust'],
-  \ 'do': './install.py --system-libclang --clang-completer --racer-completer'
+  \ 'for': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust', 'js', 'go'],
+  \ 'do': './install.py --system-libclang --clang-completer --racer-completer --js-completer --go-completer'
   \ }
 " Syntax checking and highlighting for OpenCL
 Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
