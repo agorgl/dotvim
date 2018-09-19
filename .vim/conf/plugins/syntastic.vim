@@ -10,6 +10,13 @@ let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 " Set rust checker
 let g:syntastic_rust_checkers = ['cargo']
 
+" Set java checker
+let g:syntastic_java_checkers = ['javac']
+let g:syntastic_java_javac_config_file_enabled = 1
+
+" Set tex checkers
+let g:syntastic_tex_checkers = ['chktex']
+
 " Let background colors be the same as the background of our current theme
 let g:cur_gui_bg_col = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui')
 if empty(g:cur_gui_bg_col)
