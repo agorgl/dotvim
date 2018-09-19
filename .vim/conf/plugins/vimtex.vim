@@ -10,6 +10,7 @@ let g:vimtex_compiler_latexmk = {
     \ 'executable' : 'latexmk',
     \ 'options' : [
     \   '-pdf',
+    \   '-xelatex',
     \   '-verbose',
     \   '-file-line-error',
     \   '-synctex=1',
