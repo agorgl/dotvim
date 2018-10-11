@@ -4,6 +4,7 @@
 "   -> General
 "   -> Colors and Fonts
 "   -> User Interface
+"   -> Internal Plugins
 "   -> Installed Plugins
 "   -> Misc
 "   -> Helper functions
@@ -133,6 +134,12 @@ if has('win32') || has('win64')
 endif
 
 "--------------------------------------------------------------
+" => Internal Plugins
+"--------------------------------------------------------------
+" Debugger plugin
+packadd termdebug
+
+"--------------------------------------------------------------
 " => Installed Plugins
 "--------------------------------------------------------------
 " Start plugin handling
@@ -184,22 +191,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Scripts that are used by most of the plugins yet don't really belong with any single one of the plug-ins
 Plug 'xolox/vim-misc'
-" GDB command line interface and terminal emulator
-Plug 'vim-scripts/Conque-GDB', {
-  \     'on': [
-  \         'ConqueGdb',
-  \         'ConqueGdbSplit',
-  \         'ConqueGdbVSplit',
-  \         'ConqueGdbTab',
-  \         'ConqueGdbExe',
-  \         'ConqueGdbDelete',
-  \         'ConqueGdbCommand',
-  \         'ConqueTerm',
-  \         'ConqueTermSplit',
-  \         'ConqueTermVSplit',
-  \         'ConqueTermTab',
-  \     ]
-  \ }
 " A code-completion engine
 Plug 'Valloric/YouCompleteMe', {
   \ 'for': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust', 'js', 'go'],
