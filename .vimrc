@@ -91,6 +91,9 @@ set expandtab     " Spaces instead of tabs
 set splitbelow
 set splitright
 
+" More frequent updates for, e.g. signs.
+set updatetime=750
+
 "--------------------------------------------------------------
 " => Colors and Fonts
 "--------------------------------------------------------------
