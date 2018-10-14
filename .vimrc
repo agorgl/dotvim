@@ -196,7 +196,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-misc'
 " A code-completion engine
 Plug 'Valloric/YouCompleteMe', {
-  \ 'for': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust', 'js', 'go'],
+  \ 'for': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust', 'javascript', 'go'],
   \ 'do': './install.py --system-libclang --clang-completer --racer-completer --js-completer --go-completer'
   \ }
 " Syntax checking and highlighting for OpenCL
