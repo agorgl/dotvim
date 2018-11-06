@@ -115,6 +115,11 @@ endif
 let g:rehash256 = 1 " Molokai fix flag for 256 color terminals
 colorscheme molokai " Set the color scheme
 
+" Enable DirectX rendering in Windows
+if has('win32') || has('win64')
+    set rop=type:directx,geom:1,taamode:1
+endif
+
 " Enable transparent background on terminals
 "if !has("gui_running")
 "    let g:nobg256 = 1
