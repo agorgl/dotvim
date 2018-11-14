@@ -82,7 +82,7 @@ def FlagsForFile(filename, **kwargs):
     }
     flags.extend(lang_specific_flags[filetype])
     if os.name == 'nt':
-        flags.append("--target=i686-mingw32")
+        flags.append("--target=x86_64-w64-mingw32")
 
     # Gather include directories for given source file
     logger.info("Gathering include directories for file: " + filename)
