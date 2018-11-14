@@ -202,7 +202,7 @@ Plug 'xolox/vim-misc'
 " A code-completion engine
 Plug 'Valloric/YouCompleteMe', {
   \ 'for': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust', 'javascript', 'go'],
-  \ 'do': './install.py --system-libclang --clang-completer --racer-completer --js-completer --go-completer'
+  \ 'do': './install.py --system-libclang --clang-completer --racer-completer'
   \ }
 " Syntax checking and highlighting for OpenCL
 Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
