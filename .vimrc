@@ -92,7 +92,7 @@ set splitbelow
 set splitright
 
 " More frequent updates for, e.g. signs.
-set updatetime=750
+set updatetime=300
 
 "--------------------------------------------------------------
 " => Colors and Fonts
@@ -173,8 +173,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-commentary'
 " A tree explorer
 Plug 'scrooloose/nerdtree'
-" Runs files through external syntax checkers and displays any resulting errors
-Plug 'scrooloose/syntastic'
 " Snippet plugin
 Plug 'SirVer/ultisnips'
 " Run async shell commands and output to quickfix window
@@ -199,23 +197,18 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Scripts that are used by most of the plugins yet don't really belong with any single one of the plug-ins
 Plug 'xolox/vim-misc'
-" A code-completion engine
-Plug 'Valloric/YouCompleteMe', {
-  \ 'for': ['c', 'cpp', 'python', 'cs', 'haskell', 'lua', 'java', 'rust', 'javascript', 'go'],
-  \ 'do': './install.py --system-libclang --clang-completer --racer-completer'
-  \ }
 " Syntax checking and highlighting for OpenCL
 Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
 " Happy Haskell programming
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 " Haskell completion plugin using ghc-mod
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-" Java completion
-Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 " Lua filetype plugin
 Plug 'xolox/vim-lua-ftplugin', { 'for': 'lua' }
 " LaTeX support plugin
 Plug 'lervag/vimtex', { 'for': 'tex' }
+" Complete engine and Language Server support
+Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install()} }
 
 " End plugin handling
 call plug#end()
