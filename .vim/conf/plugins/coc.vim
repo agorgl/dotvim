@@ -1,6 +1,8 @@
 ""-------------------------------------------------------------
 "" CoC
 ""-------------------------------------------------------------
+let b:tmp_dir = fnamemodify(fnamemodify(tempname(), ':p:h'), ':h')
+
 call coc#config('coc.preferences', {
   \   'diagnostic.errorSign': '✘✘',
   \   'diagnostic.warningSign': '!!',
@@ -11,11 +13,12 @@ call coc#config('coc.preferences', {
 call coc#config('languageserver', {
   \   'ccls': {
   \     "command": "ccls",
-  \     "args": ["-v=1"],
+  \     "args": ["-v=1", "-log-file=" . b:tmp_dir . "/ccls.log"],
   \     "trace.server": "verbose",
   \     "filetypes": ["c", "cpp", "objc", "objcpp"],
   \     "rootPatterns": [".git/", "src/", "Makefile"],
   \     "initializationOptions": {
+  \       "cacheDirectory": b:tmp_dir . "/ccls-cache",
   \       "compilationDatabaseCommand": expand("$HOME/.vim/conf/make_compile_db.py")
   \     }
   \   }
