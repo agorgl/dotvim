@@ -181,30 +181,16 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-fugitive'
 " Easy code formatting by integrating existing code formatters
 Plug 'Chiel92/vim-autoformat'
-" Keyword completion system by maintaining a cache of keywords in the current buffer
-Plug 'Shougo/neocomplete.vim'
-" Interactive command execution
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Syntax highlighting for OpenGL Shading Language
 Plug 'tikhomirov/vim-glsl'
-" Asynchronous build and test dispatcher
-Plug 'tpope/vim-dispatch'
 " Provides mappings to easily delete, change and add surroundings in pairs
 Plug 'tpope/vim-surround'
 " Lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
 " Themes for vim-airline
 Plug 'vim-airline/vim-airline-themes'
-" Scripts that are used by most of the plugins yet don't really belong with any single one of the plug-ins
-Plug 'xolox/vim-misc'
 " Syntax checking and highlighting for OpenCL
 Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
-" Happy Haskell programming
-Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
-" Haskell completion plugin using ghc-mod
-Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-" Lua filetype plugin
-Plug 'xolox/vim-lua-ftplugin', { 'for': 'lua' }
 " LaTeX support plugin
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Complete engine and Language Server support
