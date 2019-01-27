@@ -260,10 +260,12 @@ endfun
 "--------------------------------------------------------------
 " => Plugins Configuration
 "--------------------------------------------------------------
-set runtimepath+=$HOME/.vim/conf/plugins
-for f in split(glob('~/.vim/conf/plugins/*.vim'), '\n')
-    exe 'source' f
-endfor
+if isdirectory(g:plug_home)
+    set runtimepath+=$HOME/.vim/conf/plugins
+    for f in split(glob('~/.vim/conf/plugins/*.vim'), '\n')
+        exe 'source' f
+    endfor
+endif
 
 "--------------------------------------------------------------
 " => User Scripts
