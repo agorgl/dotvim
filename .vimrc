@@ -194,7 +194,10 @@ Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
 " LaTeX support plugin
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Complete engine and Language Server support
-Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install()} }
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 " End plugin handling
 call plug#end()
