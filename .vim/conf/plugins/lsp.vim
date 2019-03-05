@@ -10,8 +10,11 @@ if executable('ccls')
     au User lsp_setup call lsp#register_server({
       \ 'name': 'ccls',
       \ 'cmd': {server_info->['ccls', '-v=1', '-log-file=' . g:tmp_dir . '/ccls.log']},
-      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/'))},
-      \ 'initialization_options': {'cacheDirectory': g:tmp_dir . '/ccls-cache', 'compilationDatabaseCommand': expand('$HOME/.vim/conf/make_compile_db.py')},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+      \ 'initialization_options': {
+      \     'cache': {'directory': g:tmp_dir . '/ccls-cache'},
+      \     'compilationDatabaseCommand': expand('$HOME/.vim/conf/make_compile_db.py')
+      \   },
       \ 'whitelist': ['c', 'cc', 'cpp', 'objc', 'objcpp'],
       \ })
 endif
@@ -49,9 +52,11 @@ let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 
 " Tab completion
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Use <c-space> to trigger completion.
 imap <c-space> <Plug>(asyncomplete_force_refresh)
