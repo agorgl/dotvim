@@ -13,6 +13,7 @@ if executable('ccls')
       \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
       \ 'initialization_options': {
       \     'cache': {'directory': g:tmp_dir . '/ccls-cache'},
+      \     'completion': {'detailedLabel': v:false},
       \     'compilationDatabaseCommand': expand('$HOME/.vim/conf/make_compile_db.py')
       \   },
       \ 'whitelist': ['c', 'cc', 'cpp', 'objc', 'objcpp'],
