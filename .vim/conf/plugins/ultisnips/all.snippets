@@ -1,0 +1,12 @@
+snippet box "Box"
+`!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+│ $1 │
+`!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+endsnippet
+
+snippet "shead(\S)?" "Section header" brs
+`!p ll = match.group(1) or '-'`
+`!p snip.rv = '/*' + ll * 63`
+ * $1
+`!p snip.rv = ' *' + ll * 63 + '*/'`
+endsnippet
