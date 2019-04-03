@@ -193,6 +193,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
 " LaTeX support plugin
 Plug 'lervag/vimtex', { 'for': 'tex' }
+" Elixir support plugin
+Plug 'elixir-editors/vim-elixir'
 " Complete engine and Language Server support
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/async.vim'

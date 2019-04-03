@@ -41,6 +41,16 @@ if executable('pyls')
         \ })
 endif
 
+" Elixir language server
+if executable('elixir-ls')
+    " Install from repository
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'elixir-ls',
+        \ 'cmd': {server_info->['elixir-ls']},
+        \ 'whitelist': ['elixir'],
+        \ })
+endif
+
 " Debugging
 let g:lsp_log_verbose = 1
 let g:lsp_log_file = g:tmp_dir . '/vim-lsp.log'
