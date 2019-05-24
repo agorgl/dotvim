@@ -108,7 +108,7 @@ set fileformats=unix,dos
 " Set the GUI mode font
 if has('win32') || has('win64')
     set guifont=Consolas:h10
-elseif has('gui_gtk2')
+elseif has('gui_gtk2') || has('gui_gtk3')
     set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
 endif
 
