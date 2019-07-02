@@ -165,6 +165,10 @@ Plug 'junegunn/vim-easy-align'
 Plug 'kien/ctrlp.vim'
 " A CtrlP matcher, specialized for paths.
 Plug 'nixprime/cpsm', { 'do': './install.sh' }
+" A command-line fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.vim/bundle/fzf', 'do': './install --bin' }
+" A bundle of fzf-based commands and mappings
+Plug 'junegunn/fzf.vim'
 " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'mileszs/ack.vim'
 " Generates and inserts UUIDs
