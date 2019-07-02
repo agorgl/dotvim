@@ -33,16 +33,5 @@ fun! RunExtAsync(cmd)
     :copen
 endfun
 
-if has('win32')
-:command -nargs=1 RunExt call RunExtWin(<args>)
-:command -nargs=1 RunExtSplit call RunExtSplitWin(<args>)
-elseif has('unix')
-:command -nargs=1 RunExt call RunExtLin(<args>)
-:command -nargs=1 RunExtSplit call RunExtSplitLin(<args>)
-endif
-
-:nnoremap <silent> <F5> :RunExtSplit g:build_cmd<CR>
-:nnoremap <silent> <C-F5> :RunExtSplit g:clean_cmd<CR>
-:nnoremap <silent> <F6> :RunExt g:build_cmd<CR>
-:nnoremap <silent> <C-F6> :RunExt g:clean_cmd<CR>
-:nnoremap <silent> <F7> :call RunExtAsync(g:build_cmd)<CR>
+:nnoremap <silent> <F5> :call RunExtAsync(g:build_cmd)<CR>
+:nnoremap <silent> <F6> :call RunExtAsync(g:clean_cmd)<CR>
