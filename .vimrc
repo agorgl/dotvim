@@ -163,6 +163,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'kien/ctrlp.vim'
+" A CtrlP matcher, specialized for paths.
+Plug 'nixprime/cpsm', { 'do': './install.sh' }
 " Vim plugin for the Perl module / CLI script 'ack'
 Plug 'mileszs/ack.vim'
 " Generates and inserts UUIDs
