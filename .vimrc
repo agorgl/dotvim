@@ -189,10 +189,8 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'tikhomirov/vim-glsl'
 " Provides mappings to easily delete, change and add surroundings in pairs
 Plug 'tpope/vim-surround'
-" Lean & mean status/tabline for vim that's light as air.
-Plug 'vim-airline/vim-airline'
-" Themes for vim-airline
-Plug 'vim-airline/vim-airline-themes'
+" A light and configurable statusline/tabline plugin for Vim
+Plug 'itchyny/lightline.vim'
 " Syntax checking and highlighting for OpenCL
 Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
 " LaTeX support plugin
