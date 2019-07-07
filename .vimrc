@@ -169,8 +169,6 @@ Plug 'nixprime/cpsm', { 'do': './install.sh' }
 Plug 'junegunn/fzf', { 'dir': '~/.vim/bundle/fzf', 'do': './install --bin' }
 " A bundle of fzf-based commands and mappings
 Plug 'junegunn/fzf.vim'
-" Vim plugin for the Perl module / CLI script 'ack'
-Plug 'mileszs/ack.vim'
 " Generates and inserts UUIDs
 Plug 'kburdett/vim-nuuid'
 " Configuration for rust
