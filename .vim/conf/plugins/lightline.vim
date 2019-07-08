@@ -42,8 +42,14 @@ function! LightlineWhitespaceComponent()
   " Must be all spaces or all tabs before the first non-whitespace character
   let mixed_indent = search('\v(^\t+ +)|(^ +\t+)', 'nw')
   let mixed_component = mixed_indent != 0 ? '[' . mixed_indent . ']' . 'mixed indent' : ''
-  " Combine
-  return join([mixed_component, trailing_component], ' ')
+  " Pick first non empty
+  let components = [mixed_component, trailing_component]
+  for c in components
+    if !empty(c)
+      return c
+    endif
+  endfor
+  return ''
 endfunction
 
 function! s:lightline_whitespace_refresh()
