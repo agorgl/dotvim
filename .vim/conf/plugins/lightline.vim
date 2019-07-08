@@ -9,20 +9,20 @@ let g:lightline = {
   \   'colorscheme': 'deus',
   \   'active': {
   \     'left': [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']],
-  \     'right': [['trailing'], ['percent', 'lineinfo'], ['filetype', 'fileencoding', 'fileformat']]
+  \     'right': [['whitespace'], ['percent', 'lineinfo'], ['filetype', 'fileencoding', 'fileformat']]
   \   },
   \   'component': {
   \     'percent': '%p%%',
   \     'lineinfo': '%l:%-v'
   \   },
   \   'component_expand': {
-  \     'trailing': 'LightlineTrailingWhitespaceComponent'
+  \     'whitespace': 'LightlineWhitespaceComponent'
   \   },
   \   'component_function': {
   \     'gitbranch': 'fugitive#head',
   \   },
   \   'component_type': {
-  \     'trailing': 'warning',
+  \     'whitespace': 'warning',
   \   },
   \   'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
   \   'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
@@ -31,25 +31,33 @@ let g:lightline = {
   \ }
 
 "
-" Trailing whitespace component
+" Whitespace component
 "
-function! LightlineTrailingWhitespaceComponent()
-  let match = search('\s$', 'nw')
-  return match != 0 ? '[' . match . ']' . 'trailing' : ''
+function! LightlineWhitespaceComponent()
+  " Check for trailing whitespace
+  " Must not have space after the last non-whitespace character
+  let trailing = search('\s$', 'nw')
+  let trailing_component = trailing != 0 ? '[' . trailing . ']' . 'trailing' : ''
+  " Check for mixed indent
+  " Must be all spaces or all tabs before the first non-whitespace character
+  let mixed_indent = search('\v(^\t+ +)|(^ +\t+)', 'nw')
+  let mixed_component = mixed_indent != 0 ? '[' . mixed_indent . ']' . 'mixed indent' : ''
+  " Combine
+  return join([mixed_component, trailing_component], ' ')
 endfunction
 
-function! s:lightline_trailing_whitespace_refresh()
-  if get(b:, 'lightline_trailing_whitespace_changedtick', 0) == b:changedtick
+function! s:lightline_whitespace_refresh()
+  if get(b:, 'lightline_whitespace_changedtick', 0) == b:changedtick
     return
   endif
-  unlet! b:lightline_trailing_whitespace_changedtick
+  unlet! b:lightline_whitespace_changedtick
   call lightline#update()
-  let b:lightline_trailing_whitespace_changedtick = b:changedtick
+  let b:lightline_whitespace_changedtick = b:changedtick
 endfunction
 
-augroup lightline_trailing_whitespace
+augroup lightline_whitespace
   autocmd!
-  autocmd CursorHold,BufWritePost * call s:lightline_trailing_whitespace_refresh()
+  autocmd CursorHold,BufWritePost * call s:lightline_whitespace_refresh()
 augroup END
 
 "
