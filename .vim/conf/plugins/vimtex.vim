@@ -17,6 +17,7 @@ let g:vimtex_compiler_latexmk = {
     \   '-interaction=nonstopmode',
     \ ],
     \}
+let g:vimtex_quickfix_autoclose_after_keystrokes = 2
 
 if has('win32')
 let g:vimtex_view_method = 'general'
