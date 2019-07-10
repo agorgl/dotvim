@@ -94,6 +94,11 @@ set splitright
 " More frequent updates for, e.g. signs.
 set updatetime=300
 
+" Ensure Vim starts with a server
+if empty(v:servername) && exists('*remote_startserver')
+  call remote_startserver('VIM')
+endif
+
 "--------------------------------------------------------------
 " => Colors and Fonts
 "--------------------------------------------------------------
