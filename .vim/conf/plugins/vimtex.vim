@@ -26,4 +26,6 @@ let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line 
 let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 elseif has('unix')
 let g:vimtex_view_method = 'zathura'
+elseif has('macunix')
+let g:vimtex_view_method = 'skim'
 endif
