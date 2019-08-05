@@ -51,6 +51,14 @@ if executable('elixir-ls')
         \ })
 endif
 
+" Omnicompletion source
+call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+        \ 'name': 'omni',
+        \ 'whitelist': ['tex'],
+        \ 'blacklist': [],
+        \ 'completor': function('asyncomplete#sources#omni#completor')
+        \  }))
+
 " Debugging
 let g:lsp_log_verbose = 1
 let g:lsp_log_file = g:tmp_dir . '/vim-lsp.log'
