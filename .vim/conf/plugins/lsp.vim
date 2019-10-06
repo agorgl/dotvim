@@ -103,9 +103,17 @@ let g:lsp_signs_information = {'text': '--'}
 let g:lsp_signs_hint        = {'text': '**'}
 
 " Set popup menu colors
+let s:synID = synIDtrans(hlID('SignColumn'))
+let s:pmenu_guibg = synIDattr(s:synID, 'bg', 'gui')
+let s:pmenu_ctermbg = synIDattr(s:synID, 'bg', 'cterm')
+
 exec 'hi Pmenu guifg=lightblue ' .
-         \   ' guibg='   . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui')
-         \ . ' ctermbg=' . synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
+         \   ' guibg='   . (!empty(s:pmenu_guibg) ? s:pmenu_guibg : 'none')
+         \ . ' ctermbg=' . (!empty(s:pmenu_ctermbg) ? s:pmenu_ctermbg : 'none')
+
+unlet s:pmenu_ctermbg
+unlet s:pmenu_guibg
+unlet s:synID
 
 " Let background colors be the same as the background of our current theme
 let g:cur_gui_bg_col = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui')
