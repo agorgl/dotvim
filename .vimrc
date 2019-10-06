@@ -2,10 +2,10 @@
 " Sections:
 "   -> Plugins Manager Setup
 "   -> General
-"   -> Colors and Fonts
-"   -> User Interface
 "   -> Internal Plugins
 "   -> Installed Plugins
+"   -> User Interface
+"   -> Colors and Fonts
 "   -> Misc
 "   -> Helper functions
 "   -> Plugins Configuration
@@ -100,53 +100,6 @@ if empty(v:servername) && exists('*remote_startserver')
 endif
 
 "--------------------------------------------------------------
-" => Colors and Fonts
-"--------------------------------------------------------------
-" Set utf-8 as standard encoding
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
-
-" Unix line endings
-set fileformats=unix,dos
-
-" Set the GUI mode font
-if has('win32') || has('win64')
-    set guifont=Consolas:h10
-elseif has('gui_gtk2') || has('gui_gtk3')
-    set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
-endif
-
-let g:rehash256 = 1 " Molokai fix flag for 256 color terminals
-colorscheme molokai " Set the color scheme
-
-" Enable DirectX rendering in Windows
-if has('win32') || has('win64')
-    set rop=type:directx,geom:1,taamode:1
-endif
-
-" Enable transparent background on terminals
-"if !has("gui_running")
-"    let g:nobg256 = 1
-"    call EnableTransparentBg()
-"endif
-
-"--------------------------------------------------------------
-" => User Interface
-"--------------------------------------------------------------
-if has("gui_running")
-    "Strip unwanted window stuff
-    set guioptions-=m " Remove menu bar
-    set guioptions-=T " Remove toolbar
-    set guioptions-=r " Remove right-hand scroll bar
-    set guioptions-=L " Remove left-hand scroll bar
-endif
-
-if has('win32') || has('win64')
-    au GUIEnter * simalt ~x " Maximize gVim window
-endif
-
-"--------------------------------------------------------------
 " => Internal Plugins
 "--------------------------------------------------------------
 " Debugger plugin
@@ -211,6 +164,53 @@ Plug 'yami-beta/asyncomplete-omni.vim'
 
 " End plugin handling
 call plug#end()
+
+"--------------------------------------------------------------
+" => User Interface
+"--------------------------------------------------------------
+if has("gui_running")
+    "Strip unwanted window stuff
+    set guioptions-=m " Remove menu bar
+    set guioptions-=T " Remove toolbar
+    set guioptions-=r " Remove right-hand scroll bar
+    set guioptions-=L " Remove left-hand scroll bar
+endif
+
+if has('win32') || has('win64')
+    au GUIEnter * simalt ~x " Maximize gVim window
+endif
+
+"--------------------------------------------------------------
+" => Colors and Fonts
+"--------------------------------------------------------------
+" Set utf-8 as standard encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
+" Unix line endings
+set fileformats=unix,dos
+
+" Set the GUI mode font
+if has('win32') || has('win64')
+    set guifont=Consolas:h10
+elseif has('gui_gtk2') || has('gui_gtk3')
+    set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
+endif
+
+let g:rehash256 = 1 " Molokai fix flag for 256 color terminals
+colorscheme molokai " Set the color scheme
+
+" Enable DirectX rendering in Windows
+if has('win32') || has('win64')
+    set rop=type:directx,geom:1,taamode:1
+endif
+
+" Enable transparent background on terminals
+"if !has("gui_running")
+"    let g:nobg256 = 1
+"    call EnableTransparentBg()
+"endif
 
 "--------------------------------------------------------------
 " => Misc
