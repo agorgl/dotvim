@@ -153,6 +153,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
 " LaTeX support plugin
 Plug 'lervag/vimtex', { 'for': 'tex' }
+" Dart support plugin
+Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
+" Flutter support plugin
+Plug 'thosakwe/vim-flutter', { 'for': 'dart' }
 " Elixir support plugin
 Plug 'elixir-editors/vim-elixir'
 " Complete engine and Language Server support
