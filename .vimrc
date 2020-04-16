@@ -153,6 +153,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
 " LaTeX support plugin
 Plug 'lervag/vimtex', { 'for': 'tex' }
+" Javascript indentation and syntax support
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 " Dart support plugin
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 " Flutter support plugin
