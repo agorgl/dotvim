@@ -22,10 +22,10 @@ endfun
 
 fun! RunTermCmd(cmd)
     if !s:term_buf
-        let pbuf = bufnr("%")
+        let pwin = winnr()
         let tbuf = s:term_run(a:cmd)
         let s:term_buf = tbuf
-        execute pbuf . "wincmd w"
+        execute pwin . "wincmd w"
     endif
 endfun
 
