@@ -1,37 +1,44 @@
-fun! RunExtWin(cmd)
-    " Given command quoted
-    let givenCmd = "\"" . a:cmd . "\""
-    " Current working directory in unix format
-    let cwd = "\"" . substitute(getcwd(), "\\", "/", "g") . "\""
-    " Guimacro param
-    let guiMacro = join(["Print", givenCmd . ";", "Keys", "\"{Enter}\""], ' ')
-    " ConEmuC dispatch command
-    :exe "!start " . join(["ConEmuC.exe", "/GUIMACRO:" . expand($CONEMUHWND), guiMacro], ' ')
+"
+" Term aliases
+"
+let s:term_buf = 0
+
+fun! s:term_exit_cb(job, st)
+    echo 'Exit Code: ' . a:st
+    if a:st == 0 || a:st == 130
+        execute "bd!" . s:term_buf
+    endif
+    let s:term_buf = 0
 endfun
 
-fun! RunExtSplitWin(cmd)
-    let ecmd = "\"" . "call SetEscChar.cmd && " . a:cmd . "\""
-    let guiMacro = join(["Shell", "new_console:s20VnI", ecmd], ' ')
-    :exe "!start " . join(["ConEmuC.exe", "/GUIMACRO:" . expand($CONEMUHWND), guiMacro], ' ')
+fun! s:term_run(cmd)
+    let buf = term_start(a:cmd, {
+      \ "term_rows": 10,
+      \ "term_kill": "int",
+      \ "exit_cb": function('s:term_exit_cb')
+      \ })
+    return buf
 endfun
 
-fun! RunExtLin(cmd)
-    :exe ":Dispatch! " . a:cmd
+fun! RunTermCmd(cmd)
+    if !s:term_buf
+        let pbuf = bufnr("%")
+        let tbuf = s:term_run(a:cmd)
+        let s:term_buf = tbuf
+        execute pbuf . "wincmd w"
+    endif
 endfun
 
-fun! RunExtSplitLin(cmd)
-    let execName = split(getcwd(),'/')[-1]
-    let cmd1 = "bspc rule -a URxvt -o split_dir=south split_ratio=0.8"
-    let cmd2 = "bspc rule -a " . execName . " -o state=floating"
-    let cmd3 = "urxvt -e bash -c \"". a:cmd . "\""
-    let fullcmd = join([cmd1, cmd2, cmd3], ' && ')
-    :exe ":Dispatch! " . fullcmd
+fun! StopTermCmd()
+    if s:term_buf
+        "execute "bd!" . s:term_buf
+        call term_sendkeys(s:term_buf, "\<c-c>")
+    endif
 endfun
 
-fun! RunExtAsync(cmd)
-    :exe ":AsyncRun".' '.a:cmd
-    :copen
-endfun
+map <Esc>[15^ <C-F5>
+map <Esc>[28~ <S-F5>
 
-:nnoremap <silent> <F5> :call RunExtAsync(g:build_cmd)<CR>
-:nnoremap <silent> <F6> :call RunExtAsync(g:clean_cmd)<CR>
+nnoremap <silent> <F5> :call RunTermCmd(g:build_cmd)<CR>
+nnoremap <silent> <C-F5> :call RunTermCmd(g:clean_cmd)<CR>
+nnoremap <silent> <S-F5> :call StopTermCmd()<CR>
