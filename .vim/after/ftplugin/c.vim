@@ -1,2 +1,2 @@
-let g:buildCmd="make run"
-let g:cleanCmd="make clean"
+let g:build_cmd="make run"
+let g:clean_cmd="make clean"
