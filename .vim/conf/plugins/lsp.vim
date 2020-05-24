@@ -51,16 +51,6 @@ if executable('typescript-language-server')
         \ })
 endif
 
-" Elixir language server
-if executable('elixir-ls')
-    " Install from repository
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'elixir-ls',
-        \ 'cmd': {server_info->['elixir-ls']},
-        \ 'whitelist': ['elixir'],
-        \ })
-endif
-
 function! s:FindDart() abort
     if executable('dart') | return resolve(exepath('dart')) | endif
     if executable('flutter')

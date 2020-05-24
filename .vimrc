@@ -147,8 +147,6 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'tpope/vim-surround'
 " A light and configurable statusline/tabline plugin for Vim
 Plug 'itchyny/lightline.vim'
-" Syntax checking and highlighting for OpenCL
-Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
 " LaTeX support plugin
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Javascript indentation and syntax support
@@ -157,8 +155,6 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 " Flutter support plugin
 Plug 'thosakwe/vim-flutter', { 'for': 'dart' }
-" Elixir support plugin
-Plug 'elixir-editors/vim-elixir'
 " Complete engine and Language Server support
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/async.vim'
