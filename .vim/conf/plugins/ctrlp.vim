@@ -14,4 +14,6 @@ if executable('fd')
 endif
 
 " Use cpsm matcher
-let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
+if !has('win32')
+    let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
+endif
