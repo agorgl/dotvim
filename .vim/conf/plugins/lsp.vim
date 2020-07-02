@@ -3,6 +3,8 @@
 ""-------------------------------------------------------------
 " Tmp directory path
 let g:tmp_dir = fnamemodify(fnamemodify(tempname(), ':p:h'), ':h')
+" Lsp script path
+let g:lsp_dir = expand('$HOME/.vim/conf/plugins/lsp/')
 
 " C language server
 if executable('ccls')
@@ -38,6 +40,17 @@ if executable('pyls')
         \ 'name': 'pyls',
         \ 'cmd': {server_info->['pyls']},
         \ 'whitelist': ['python'],
+        \ })
+endif
+
+" Java language server
+if executable('jdtls')
+    " Install from distro repositories || build it from source
+    let g:jdtls_script = g:lsp_dir . 'jdtls' . (has('win32') ? '.bat' : '.sh')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'jdtls',
+        \ 'cmd': {server_info->[g:jdtls_script, lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..')]},
+        \ 'whitelist': ['java'],
         \ })
 endif
 
