@@ -151,6 +151,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Javascript indentation and syntax support
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+" Typescript syntax files for Vim
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 " Dart support plugin
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 " Flutter support plugin
