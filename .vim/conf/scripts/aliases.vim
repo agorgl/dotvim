@@ -7,8 +7,8 @@ fun! s:term_exit_cb(job, st)
     echo 'Exit Code: ' . a:st
     if a:st == 0 || a:st == 130
         execute "bd!" . s:term_buf
+        let s:term_buf = 0
     endif
-    let s:term_buf = 0
 endfun
 
 fun! s:term_run(cmd)
@@ -21,18 +21,33 @@ fun! s:term_run(cmd)
 endfun
 
 fun! RunTermCmd(cmd)
-    if !s:term_buf
+    let job = s:term_buf != 0 ? term_getjob(s:term_buf) : v:null
+    if job == v:null || job_status(job) != "run"
+        if s:term_buf != 0
+            execute "bd!" . s:term_buf
+            let s:term_buf = 0
+        endif
         let pwin = winnr()
         let tbuf = s:term_run(a:cmd)
         let s:term_buf = tbuf
         execute pwin . "wincmd w"
+    else
+        echo 'Already running!'
     endif
 endfun
 
 fun! StopTermCmd()
-    if s:term_buf
-        "execute "bd!" . s:term_buf
-        call term_sendkeys(s:term_buf, "\<c-c>")
+    let job = s:term_buf != 0 ? term_getjob(s:term_buf) : v:null
+    if job != v:null && job_status(job) == "run"
+        "call term_sendkeys(s:term_buf, "\<c-c>")
+        call job_stop(job, "int")
+    else
+        if s:term_buf != 0
+            execute "bd!" . s:term_buf
+            let s:term_buf = 0
+        else
+            echo 'Nothing to stop!'
+        endif
     endif
 endfun
 
