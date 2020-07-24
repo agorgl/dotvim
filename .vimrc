@@ -113,8 +113,6 @@ call plug#begin('~/.vim/bundle')
 
 " Shows a git diff in the gutter (sign column) and stages/undoes hunks.
 Plug 'airblade/vim-gitgutter'
-" Search local vimrc files (".lvimrc") in the tree (root dir up to current dir) and load them
-Plug 'embear/vim-localvimrc'
 " Insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
 " Alignment plugin
