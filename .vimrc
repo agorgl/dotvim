@@ -190,6 +190,7 @@ set fileencodings=utf-8
 
 " Unix line endings
 set fileformats=unix,dos
+set nofixendofline
 
 " Set the GUI mode font
 if has('win32') || has('win64')
