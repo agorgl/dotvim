@@ -26,15 +26,15 @@ if has('win32') || has('win64')
     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
 
-let vimplug_exists=expand('~/.vim/autoload/plug.vim')
+let vimplug_exists = expand('~/.vim/autoload/plug.vim')
 if !filereadable(vimplug_exists)
-    let vimplug_url='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    let vimplug_url = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     echom "Installing Vim-Plug..."
     if executable('curl')
-        exec '!curl -fLo '.'~/.vim/autoload/plug.vim'.' --create-dirs '.vimplug_url
+        exec '!curl -fLo ' . expand('~/.vim/autoload/plug.vim') . ' --create-dirs ' . vimplug_url
     elseif executable('wget')
         call mkdir(fnamemodify('~/.vim/autoload/plug.vim', ':h'), 'p')
-        exec '!wget --force-directories --no-check-certificate -O '.'~/.vim/autoload/plug.vim'.' '.vimplug_url
+        exec '!wget --force-directories --no-check-certificate -O ' . expand('~/.vim/autoload/plug.vim') . ' ' . vimplug_url
     else
         echom 'Could not download plugin manager. No plugins were installed'
         finish
