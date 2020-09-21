@@ -171,18 +171,10 @@ Plug 'yami-beta/asyncomplete-omni.vim'
 "
 " -# Languages #-
 "
-" Configuration for rust
-Plug 'rust-lang/rust.vim'
-" Syntax highlighting for OpenGL Shading Language
-Plug 'tikhomirov/vim-glsl'
+" A collection of language packs for Vim
+Plug 'sheerun/vim-polyglot'
 " LaTeX support plugin
 Plug 'lervag/vimtex', { 'for': 'tex' }
-" Javascript indentation and syntax support
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-" Typescript syntax files for Vim
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-" Dart support plugin
-Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 " Flutter support plugin
 Plug 'thosakwe/vim-flutter', { 'for': 'dart' }
 
