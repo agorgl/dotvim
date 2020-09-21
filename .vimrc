@@ -111,40 +111,65 @@ packadd termdebug
 " Start plugin handling
 call plug#begin('~/.vim/bundle')
 
-" Shows a git diff in the gutter (sign column) and stages/undoes hunks.
-Plug 'airblade/vim-gitgutter'
-" Insert or delete brackets, parens, quotes in pair
-Plug 'jiangmiao/auto-pairs'
-" Alignment plugin
-Plug 'junegunn/vim-easy-align'
+"
+" -# Interface #-
+"
+" A tree explorer
+Plug 'scrooloose/nerdtree'
+" A light and configurable statusline/tabline plugin for Vim
+Plug 'itchyny/lightline.vim'
 " Fuzzy file, buffer, mru, tag, etc finder
 Plug 'kien/ctrlp.vim'
 " A CtrlP matcher, specialized for paths.
 Plug 'nixprime/cpsm', { 'do': './install.sh' }
+
+"
+" -# Editing #-
+"
+" Insert or delete brackets, parens, quotes in pair
+Plug 'jiangmiao/auto-pairs'
+" Provides mappings to easily delete, change and add surroundings in pairs
+Plug 'tpope/vim-surround'
+" Shows a git diff in the gutter (sign column) and stages/undoes hunks.
+Plug 'airblade/vim-gitgutter'
+" Alignment plugin
+Plug 'junegunn/vim-easy-align'
+" Intensely orgasmic commenting
+Plug 'tpope/vim-commentary'
+" Snippet plugin
+Plug 'SirVer/ultisnips'
+
+"
+" -# Tools #-
+"
+" Run async shell commands and output to quickfix window
+Plug 'skywind3000/asyncrun.vim'
 " A command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.vim/bundle/fzf', 'do': './install --bin' }
 " A bundle of fzf-based commands and mappings
 Plug 'junegunn/fzf.vim'
-" Configuration for rust
-Plug 'rust-lang/rust.vim'
-" Intensely orgasmic commenting
-Plug 'tpope/vim-commentary'
-" A tree explorer
-Plug 'scrooloose/nerdtree'
-" Snippet plugin
-Plug 'SirVer/ultisnips'
-" Run async shell commands and output to quickfix window
-Plug 'skywind3000/asyncrun.vim'
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 " Easy code formatting by integrating existing code formatters
 Plug 'Chiel92/vim-autoformat'
+
+"
+" -# Completion Engine #-
+"
+" Complete engine and Language Server support
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'yami-beta/asyncomplete-omni.vim'
+
+"
+" -# Languages #-
+"
+" Configuration for rust
+Plug 'rust-lang/rust.vim'
 " Syntax highlighting for OpenGL Shading Language
 Plug 'tikhomirov/vim-glsl'
-" Provides mappings to easily delete, change and add surroundings in pairs
-Plug 'tpope/vim-surround'
-" A light and configurable statusline/tabline plugin for Vim
-Plug 'itchyny/lightline.vim'
 " LaTeX support plugin
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Javascript indentation and syntax support
@@ -155,12 +180,6 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 " Flutter support plugin
 Plug 'thosakwe/vim-flutter', { 'for': 'dart' }
-" Complete engine and Language Server support
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'yami-beta/asyncomplete-omni.vim'
 
 " End plugin handling
 call plug#end()
