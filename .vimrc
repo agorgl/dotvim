@@ -94,6 +94,11 @@ set splitright
 " More frequent updates for, e.g. signs.
 set updatetime=300
 
+" Uniform copy paste between systemms
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
+
 " Ensure Vim starts with a server
 if empty(v:servername) && exists('*remote_startserver')
   call remote_startserver('VIM')
@@ -240,6 +245,10 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
+
+" Easier copy paste mappings
+noremap YY "+y<CR>
+noremap PP "+gP<CR>
 
 "--------------------------------------------------------------
 " => Helper functions
