@@ -230,12 +230,6 @@ if has('win32') || has('win64')
     set rop=type:directx,geom:1,taamode:1
 endif
 
-" Enable transparent background on terminals
-"if !has("gui_running")
-"    let g:nobg256 = 1
-"    call EnableTransparentBg()
-"endif
-
 "--------------------------------------------------------------
 " => Misc
 "--------------------------------------------------------------
