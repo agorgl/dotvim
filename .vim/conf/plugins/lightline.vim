@@ -85,3 +85,17 @@ endfunction
 function! CtrlPStatusFunc2(str)
   return lightline#statusline(0)
 endfunction
+
+"
+" ColorScheme refresh
+"
+function! s:lightline_update()
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfunction
+
+augroup lightline_colorscheme_change
+  autocmd!
+  autocmd ColorScheme * call s:lightline_update()
+augroup END
