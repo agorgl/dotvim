@@ -51,8 +51,8 @@ fun! StopTermCmd()
     endif
 endfun
 
-map <Esc>[15^ <C-F5>
-map <Esc>[28~ <S-F5>
+map <Esc>[15;5~ <C-F5>
+map <Esc>[15;2~ <S-F5>
 
 nnoremap <silent> <F5> :call RunTermCmd(g:build_cmd)<CR>
 nnoremap <silent> <C-F5> :call RunTermCmd(g:clean_cmd)<CR>
