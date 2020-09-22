@@ -175,8 +175,8 @@ let s:pmenu_guibg = synIDattr(s:synID, 'bg', 'gui')
 let s:pmenu_ctermbg = synIDattr(s:synID, 'bg', 'cterm')
 
 exec 'hi Pmenu guifg=lightblue ' .
-         \   ' guibg='   . (!empty(s:pmenu_guibg) ? s:pmenu_guibg : 'none')
-         \ . ' ctermbg=' . (!empty(s:pmenu_ctermbg) ? s:pmenu_ctermbg : 'none')
+         \   ' guibg='   . (!empty(s:pmenu_guibg) ? s:pmenu_guibg : 'NONE')
+         \ . ' ctermbg=' . (!empty(s:pmenu_ctermbg) ? s:pmenu_ctermbg : 'NONE')
 
 unlet s:pmenu_ctermbg
 unlet s:pmenu_guibg
@@ -185,11 +185,11 @@ unlet s:synID
 " Let background colors be the same as the background of our current theme
 let g:cur_gui_bg_col = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui')
 if empty(g:cur_gui_bg_col)
-    let g:cur_gui_bg_col = "none"
+    let g:cur_gui_bg_col = "NONE"
 endif
 let g:cur_term_bg_col = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
 if empty(g:cur_term_bg_col)
-    let g:cur_term_bg_col = "none"
+    let g:cur_term_bg_col = "NONE"
 endif
 
 " Set error sign color to bg = SignColumn
