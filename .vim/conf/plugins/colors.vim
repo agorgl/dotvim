@@ -28,15 +28,22 @@ fun! s:lightline_pick_theme(name)
     return !empty(theme) ? theme : deflt
 endfun
 
+" Sets lightline colorscheme
+fun! s:lightline_set_theme(name)
+    if exists('g:lightline')
+        call extend(g:lightline, {'colorscheme': a:name})
+    else
+        let g:lightline = {'colorscheme': a:name}
+    endif
+endfun
+
 "
 " Colorscheme specific setups
 "
 fun! s:setup_molokai()
     let g:rehash256 = 1 " Molokai fix flag for 256 color terminals
     set termguicolors&  " Remove true color, makes whites too bright
-    if exists('g:lightline')
-        call extend(g:lightline, {'colorscheme': 'deus'})
-    endif
+    call s:lightline_set_theme('deus')
 endfun
 
 "
@@ -45,10 +52,8 @@ endfun
 fun! s:setup_colorscheme_options(current_scheme)
     " Defaults for everything
     set termguicolors
-    if exists('g:lightline')
-        let matched = s:lightline_pick_theme(a:current_scheme)
-        call extend(g:lightline, {'colorscheme': matched})
-    endif
+    let matched = s:lightline_pick_theme(a:current_scheme)
+    call s:lightline_set_theme(matched)
 
     " Apply specific setup function if exists
     let fname = 's:setup_' . a:current_scheme

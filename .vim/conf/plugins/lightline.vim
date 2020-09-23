@@ -5,7 +5,7 @@
 set laststatus=2
 
 " Main lightline configuration
-let g:lightline = {
+let s:lightline = {
   \   'colorscheme': 'deus',
   \   'active': {
   \     'left': [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']],
@@ -29,6 +29,8 @@ let g:lightline = {
   \   'tabline_separator': { 'left': "\ue0b8", 'right': "\ue0be" },
   \   'tabline_subseparator': { 'left': "\ue0b9", 'right': "\ue0b9" }
   \ }
+
+let g:lightline = extend(get(g:, 'lightline', {}), s:lightline, "keep")
 
 "
 " Whitespace component
