@@ -129,6 +129,34 @@ Plug 'kien/ctrlp.vim'
 Plug 'nixprime/cpsm', { 'do': './install.sh' }
 
 "
+" -# Themes #-
+"
+" Molokai
+Plug 'tomasr/molokai'
+" Badwolf
+Plug 'sjl/badwolf'
+" Srcery
+Plug 'srcery-colors/srcery-vim'
+" Onedark
+Plug 'joshdick/onedark.vim'
+" Sonokai
+Plug 'sainnhe/sonokai'
+" Edge
+Plug 'sainnhe/edge'
+" Tender
+Plug 'jacoborus/tender.vim'
+" Pencil
+Plug 'reedes/vim-colors-pencil'
+" Tokyo Night
+Plug 'ghifarit53/tokyonight-vim'
+" Apprentice
+Plug 'romainl/Apprentice'
+" Lucius
+Plug 'jonathanfilip/vim-lucius'
+" Jellybeans
+Plug 'nanotech/jellybeans.vim'
+
+"
 " -# Editing #-
 "
 " Insert or delete brackets, parens, quotes in pair
