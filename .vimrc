@@ -222,8 +222,8 @@ elseif has('gui_gtk2') || has('gui_gtk3')
     set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
 endif
 
-let g:rehash256 = 1 " Molokai fix flag for 256 color terminals
-colorscheme molokai " Set the color scheme
+" Set the color scheme
+colorscheme molokai
 
 " Enable DirectX rendering in Windows
 if has('win32') || has('win64')
