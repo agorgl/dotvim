@@ -268,8 +268,8 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 map <leader>pp :setlocal paste!<cr>
 
 " Easier copy paste mappings
-noremap YY "+y<CR>
-noremap PP "+gP<CR>
+noremap YY "+y
+noremap PP "+p
 
 "--------------------------------------------------------------
 " => Helper functions
