@@ -123,10 +123,10 @@ call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdtree'
 " A light and configurable statusline/tabline plugin for Vim
 Plug 'itchyny/lightline.vim'
-" Fuzzy file, buffer, mru, tag, etc finder
-Plug 'kien/ctrlp.vim'
-" A CtrlP matcher, specialized for paths.
-Plug 'nixprime/cpsm', { 'do': './install.sh' }
+" A command-line fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" A bundle of fzf-based commands and mappings
+Plug 'junegunn/fzf.vim'
 
 "
 " -# Themes #-
@@ -177,10 +177,6 @@ Plug 'SirVer/ultisnips'
 "
 " Run async shell commands and output to quickfix window
 Plug 'skywind3000/asyncrun.vim'
-" A command-line fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.vim/bundle/fzf', 'do': './install --bin' }
-" A bundle of fzf-based commands and mappings
-Plug 'junegunn/fzf.vim'
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 " Easy code formatting by integrating existing code formatters
