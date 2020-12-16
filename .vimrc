@@ -127,6 +127,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " A bundle of fzf-based commands and mappings
 Plug 'junegunn/fzf.vim'
+" View and search LSP symbols, tags
+Plug 'liuchengxu/vista.vim'
 
 "
 " -# Themes #-
