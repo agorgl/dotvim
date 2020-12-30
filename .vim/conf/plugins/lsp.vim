@@ -172,18 +172,15 @@ let g:lsp_signs_warning     = {'text': '!!'}
 let g:lsp_signs_information = {'text': '--'}
 let g:lsp_signs_hint        = {'text': '**'}
 
-" Set popup menu colors
-let s:synID = synIDtrans(hlID('SignColumn'))
-let s:pmenu_guibg = synIDattr(s:synID, 'bg', 'gui')
-let s:pmenu_ctermbg = synIDattr(s:synID, 'bg', 'cterm')
+fun! s:setup_popup_colors()
+    let synID = synIDtrans(hlID('SignColumn'))
+    let pmenu_guibg = synIDattr(l:synID, 'bg', 'gui')
+    let pmenu_ctermbg = synIDattr(l:synID, 'bg', 'cterm')
 
-exec 'hi Pmenu guifg=lightblue ' .
-         \   ' guibg='   . (!empty(s:pmenu_guibg) ? s:pmenu_guibg : 'NONE')
-         \ . ' ctermbg=' . (!empty(s:pmenu_ctermbg) ? s:pmenu_ctermbg : 'NONE')
-
-unlet s:pmenu_ctermbg
-unlet s:pmenu_guibg
-unlet s:synID
+    exec 'hi Pmenu guifg=lightblue ' .
+             \   ' guibg='   . (!empty(l:pmenu_guibg) ? l:pmenu_guibg : 'NONE')
+             \ . ' ctermbg=' . (!empty(l:pmenu_ctermbg) ? l:pmenu_ctermbg : 'NONE')
+endfun
 
 fun! s:setup_background_colors()
     " Let background colors be the same as the background of our current theme
@@ -217,4 +214,5 @@ fun! s:setup_background_colors()
                 \' ctermbg=' . l:cur_term_bg_col
 endfun
 
+call s:setup_popup_colors()
 call s:setup_background_colors()
