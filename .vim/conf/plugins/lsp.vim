@@ -163,6 +163,9 @@ nmap <leader>rn <Plug>(lsp-rename)
 " Fix autofix problem of current line
 nmap <leader>qf <Plug>(lsp-code-action)
 
+" Show popup with info on the item under the cursor
+nmap <silent> K <plug>(lsp-hover)
+
 " Setup signs
 let g:lsp_signs_error       = {'text': '✘✘'}
 let g:lsp_signs_warning     = {'text': '!!'}
