@@ -185,35 +185,36 @@ unlet s:pmenu_ctermbg
 unlet s:pmenu_guibg
 unlet s:synID
 
-" Let background colors be the same as the background of our current theme
-let g:cur_gui_bg_col = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui')
-if empty(g:cur_gui_bg_col)
-    let g:cur_gui_bg_col = "NONE"
-endif
-let g:cur_term_bg_col = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
-if empty(g:cur_term_bg_col)
-    let g:cur_term_bg_col = "NONE"
-endif
+fun! s:setup_background_colors()
+    " Let background colors be the same as the background of our current theme
+    let cur_gui_bg_col = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui')
+    if empty(l:cur_gui_bg_col)
+        let cur_gui_bg_col = "NONE"
+    endif
+    let cur_term_bg_col = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
+    if empty(l:cur_term_bg_col)
+        let cur_term_bg_col = "NONE"
+    endif
 
-" Set error sign color to bg = SignColumn
-exec 'hi LspErrorText guifg=#990000 ctermfg=1 ' .
-            \' guibg=' . g:cur_gui_bg_col .
-            \' ctermbg=' . g:cur_term_bg_col
+    " Set error sign color to bg = SignColumn
+    exec 'hi LspErrorText guifg=#990000 ctermfg=1 ' .
+                \' guibg=' . l:cur_gui_bg_col .
+                \' ctermbg=' . l:cur_term_bg_col
 
-" Set warning sign color to bg = SignColumn
-exec 'hi LspWarningText guifg=#DFAF00 ctermfg=11 ' .
-            \' guibg=' . g:cur_gui_bg_col .
-            \' ctermbg=' . g:cur_term_bg_col
+    " Set warning sign color to bg = SignColumn
+    exec 'hi LspWarningText guifg=#DFAF00 ctermfg=11 ' .
+                \' guibg=' . l:cur_gui_bg_col .
+                \' ctermbg=' . l:cur_term_bg_col
 
-" Set info sign color to bg = SignColumn
-exec 'hi LspInformationText guifg=#00CECE ctermfg=14 ' .
-            \' guibg=' . g:cur_gui_bg_col .
-            \' ctermbg=' . g:cur_term_bg_col
+    " Set info sign color to bg = SignColumn
+    exec 'hi LspInformationText guifg=#00CECE ctermfg=14 ' .
+                \' guibg=' . l:cur_gui_bg_col .
+                \' ctermbg=' . l:cur_term_bg_col
 
-" Set hint sign color to bg = SignColumn
-exec 'hi LspHintText guifg=#C0C0C0 ctermfg=7 ' .
-            \' guibg=' . g:cur_gui_bg_col .
-            \' ctermbg=' . g:cur_term_bg_col
+    " Set hint sign color to bg = SignColumn
+    exec 'hi LspHintText guifg=#C0C0C0 ctermfg=7 ' .
+                \' guibg=' . l:cur_gui_bg_col .
+                \' ctermbg=' . l:cur_term_bg_col
+endfun
 
-unlet g:cur_gui_bg_col
-unlet g:cur_term_bg_col
+call s:setup_background_colors()
