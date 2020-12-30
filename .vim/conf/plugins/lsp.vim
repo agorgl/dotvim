@@ -93,30 +93,29 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " Use <c-space> to trigger completion.
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(lsp-previous-error)
-nmap <silent> ]c <Plug>(lsp-next-error)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(lsp-definition)
-nmap <silent> gy <Plug>(lsp-type-definition)
-nmap <silent> gi <Plug>(lsp-implementation)
-nmap <silent> gr <Plug>(lsp-references)
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(lsp-rename)
-
-" Fix autofix problem of current line
-nmap <leader>qf <Plug>(lsp-code-action)
-
-" Show popup with info on the item under the cursor
-nmap <silent> K <plug>(lsp-hover)
-
 " Setup signs
 let g:lsp_signs_error       = {'text': '✘✘'}
 let g:lsp_signs_warning     = {'text': '!!'}
 let g:lsp_signs_information = {'text': '--'}
 let g:lsp_signs_hint        = {'text': '**'}
+
+fun! s:setup_mappings()
+    " Use `[c` and `]c` for navigate diagnostics
+    nmap <silent> [c <Plug>(lsp-previous-error)
+    nmap <silent> ]c <Plug>(lsp-next-error)
+
+    " Remap keys for gotos
+    nmap <silent> gd <Plug>(lsp-definition)
+    nmap <silent> gy <Plug>(lsp-type-definition)
+    nmap <silent> gi <Plug>(lsp-implementation)
+    nmap <silent> gr <Plug>(lsp-references)
+
+    " Remap for rename current word
+    nmap <leader>rn <Plug>(lsp-rename)
+
+    " Show popup with info on the item under the cursor
+    nmap <silent> K <plug>(lsp-hover)
+endfun
 
 fun! s:setup_popup_colors()
     let synID = synIDtrans(hlID('SignColumn'))
@@ -160,5 +159,6 @@ fun! s:setup_background_colors()
                 \' ctermbg=' . l:cur_term_bg_col
 endfun
 
+call s:setup_mappings()
 call s:setup_popup_colors()
 call s:setup_background_colors()
