@@ -2,7 +2,7 @@
 "" FZF
 ""-------------------------------------------------------------
 " Commands
-command! CtrlP execute (len(system('git rev-parse'))) ? ':Files' : ':GFiles'
+command! CtrlP execute (len(system('git rev-parse'))) ? ':Files' : ':GFiles --cached --others --exclude-standard'
 
 " Mappings
 nnoremap <silent> <C-P>  :<C-U>CtrlP<CR>
