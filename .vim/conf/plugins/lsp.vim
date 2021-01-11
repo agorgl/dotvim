@@ -29,6 +29,14 @@ if executable('rls')
         \ 'name': 'rls',
         \ 'cmd': {server_info->['rust-analyzer']},
         \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'Cargo.toml'))},
+        \ 'initialization_options': {
+        \   'cargo': {
+        \     'loadOutDirsFromCheck': v:true
+        \     },
+        \   'procMacro': {
+        \     'enable': v:true
+        \     }
+        \   },
         \ 'whitelist': ['rust'],
         \ })
 endif
