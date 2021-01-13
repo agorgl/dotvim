@@ -249,7 +249,9 @@ elseif has('gui_gtk2') || has('gui_gtk3')
 endif
 
 " Set the color scheme
-colorscheme molokai
+if isdirectory(g:plug_home)
+    colorscheme molokai
+endif
 
 " Enable DirectX rendering in Windows
 if has('win32') || has('win64')
