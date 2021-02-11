@@ -62,8 +62,31 @@ if executable('jdtls')
         \ })
 endif
 
+" HTML language server
+if executable('html-languageserver')
+    " npm i -g vscode-html-languageserver
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'html-languageserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'html-languageserver --stdio']},
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+        \ 'whitelist': ['html'],
+        \ })
+endif
+
+" CSS language server
+if executable('css-languageserver')
+    " npm i -g vscode-css-languageserver
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'css-languageserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+        \ 'whitelist': ['css', 'less', 'sass', 'scss'],
+        \ })
+endif
+
 " Javascript/Typescript language server
 if executable('typescript-language-server')
+    " npm i typescript-language-server
     au User lsp_setup call lsp#register_server({
         \ 'name': 'typescript-language-server',
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
