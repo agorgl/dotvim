@@ -264,9 +264,6 @@ endif
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-
 " Easier copy paste mappings
 noremap YY "+y
 noremap PP "+p
