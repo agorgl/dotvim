@@ -91,6 +91,10 @@ let g:lsp_signs_enabled = 1
 " Enable echo under cursor when in normal mode
 let g:lsp_diagnostics_echo_cursor = 1
 
+" Fix markdown inside preview popup
+autocmd FileType markdown.lsp-hover
+	\ nmap <silent><buffer>q :pclose<CR>| doautocmd <nomodeline> BufWinEnter
+
 " Setup signs
 let g:lsp_signs_error       = {'text': '✘✘'}
 let g:lsp_signs_warning     = {'text': '!!'}
