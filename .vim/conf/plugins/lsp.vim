@@ -103,10 +103,9 @@ let g:lsp_signs_hint        = {'text': '**'}
 
 " Tab completion
 imap <c-space> <Plug>(asyncomplete_force_refresh)
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
 fun! s:setup_mappings()
     " Use `[c` and `]c` for navigate diagnostics
