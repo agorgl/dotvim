@@ -70,8 +70,9 @@ syntax on
 set wildmenu
 set wildmode=list:longest,list:full
 
-" Remove preview window from autocompletion
-set completeopt-=preview
+" Completion
+set completeopt-=preview " Remove preview window from autocompletion
+set pumheight=12         " Set max height for popup window
 
 " Turn off swap and backup files
 set noswapfile
