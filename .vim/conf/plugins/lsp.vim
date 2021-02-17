@@ -130,24 +130,6 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
-fun! s:setup_mappings()
-    " Use `[c` and `]c` for navigate diagnostics
-    nmap <silent> [c <Plug>(lsp-previous-error)
-    nmap <silent> ]c <Plug>(lsp-next-error)
-
-    " Remap keys for gotos
-    nmap <silent> gd <Plug>(lsp-definition)
-    nmap <silent> gy <Plug>(lsp-type-definition)
-    nmap <silent> gi <Plug>(lsp-implementation)
-    nmap <silent> gr <Plug>(lsp-references)
-
-    " Remap for rename current word
-    nmap <leader>rn <Plug>(lsp-rename)
-
-    " Show popup with info on the item under the cursor
-    nmap <silent> K <plug>(lsp-hover)
-endfun
-
 fun! s:setup_popup_colors()
     let synID = synIDtrans(hlID('SignColumn'))
     let pmenu_guibg = synIDattr(l:synID, 'bg', 'gui')
@@ -190,6 +172,29 @@ fun! s:setup_background_colors()
                 \' ctermbg=' . l:cur_term_bg_col
 endfun
 
-call s:setup_mappings()
 call s:setup_popup_colors()
 call s:setup_background_colors()
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+
+    nmap <buffer> gd <Plug>(lsp-definition)
+    nmap <buffer> gr <Plug>(lsp-references)
+    nmap <buffer> gi <Plug>(lsp-implementation)
+    nmap <buffer> gt <Plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <Plug>(lsp-rename)
+    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nmap <buffer>  K <Plug>(lsp-hover)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre * call execute('LspDocumentFormatSync')
+endfunction
+
+augroup lsp_install
+    au!
+    " Run only for languages a server is registered
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
