@@ -106,13 +106,16 @@ call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
 " Debugging
 let g:lsp_log_verbose = 1
 let g:lsp_log_file = g:tmp_dir . '/vim-lsp.log'
+let g:lsp_work_done_progress_enabled = 1
 let g:asyncomplete_log_file = g:tmp_dir . '/asyncomplete.log'
 
 " Enable signs
 let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_signs_priority = 11
 
 " Enable echo under cursor when in normal mode
 let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_float_cursor = 1
 
 " Fix markdown inside preview popup
 autocmd FileType markdown.lsp-hover
