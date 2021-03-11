@@ -130,6 +130,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " View and search LSP symbols, tags
 Plug 'liuchengxu/vista.vim'
+" Copy text from anywhere with OSC52
+Plug 'ojroques/vim-oscyank'
 
 "
 " -# Themes #-
