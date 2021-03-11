@@ -101,7 +101,7 @@ if has('unnamedplus')
 endif
 
 " Ensure Vim starts with a server
-if empty(v:servername) && exists('*remote_startserver')
+if empty(v:servername) && exists('*remote_startserver') && ($STY != "")
   call remote_startserver('VIM')
 endif
 
