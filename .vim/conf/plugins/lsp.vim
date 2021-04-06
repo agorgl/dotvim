@@ -95,6 +95,28 @@ if executable('typescript-language-server')
         \ })
 endif
 
+" YAML language server
+if executable('yaml-language-server')
+   au User lsp_setup call lsp#register_server({
+        \ 'name': 'yaml-language-server',
+        \ 'cmd': {server_info->['yaml-language-server', '--stdio']},
+        \ 'whitelist': ['yaml.kubernetes', 'yaml.ansible'],
+        \ 'workspace_config': {
+        \   'yaml': {
+        \     'validate': v:true,
+        \     'hover': v:true,
+        \     'completion': v:true,
+        \     'customTags': [],
+        \     'schemas': {
+        \       'kubernetes': ["/*.yaml", "/*.yml"],
+        \       'https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json': ['/docker-compose.yml'],
+        \     },
+        \     'schemaStore': { 'enable': v:true },
+        \     }
+        \   }
+        \ })
+endif
+
 " Omnicompletion source
 call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
         \ 'name': 'omni',
