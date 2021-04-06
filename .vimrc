@@ -186,6 +186,8 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-fugitive'
 " Easy code formatting by integrating existing code formatters
 Plug 'Chiel92/vim-autoformat'
+" Run your tests at the speed of thought
+Plug 'vim-test/vim-test'
 
 "
 " -# Completion Engine #-
