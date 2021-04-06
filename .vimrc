@@ -188,6 +188,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'Chiel92/vim-autoformat'
 " Run your tests at the speed of thought
 Plug 'vim-test/vim-test'
+" A REST console for Vim
+Plug 'diepm/vim-rest-console'
 
 "
 " -# Completion Engine #-
