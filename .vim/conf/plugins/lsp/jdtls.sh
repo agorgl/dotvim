@@ -4,7 +4,7 @@
 srv_loc=/usr/share/java/jdtls
 
 # Lombok addon location
-lmb_loc=$HOME/.local/opt/lombok/lombok.jar
+lmb_loc=$HOME/.local/share/java/lombok.jar
 
 # Project location from arguments
 prj_loc=$1
@@ -24,7 +24,6 @@ trap "{ rm -rf ${tmp_dir}; }" EXIT
 java \
     -cp $lmb_loc \
     -javaagent:$lmb_loc \
-    -Xbootclasspath/a:$lmb_loc \
     -Declipse.application=org.eclipse.jdt.ls.core.id1 \
     -Dosgi.bundles.defaultStartLevel=4 \
     -Declipse.product=org.eclipse.jdt.ls.core.product \
