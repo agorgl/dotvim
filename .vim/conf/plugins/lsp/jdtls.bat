@@ -4,6 +4,9 @@ setlocal EnableDelayedExpansion
 :: Eclipse jdt.ls location
 set srv_loc=%USERPROFILE%\.local\opt\jdtls
 
+:: Lombok addon location
+set lmb_loc=%USERPROFILE%\.local\share\java\lombok.jar
+
 :: Project location from arguments
 set prj_loc=%1
 
@@ -22,6 +25,8 @@ for /f "tokens=* usebackq" %%f in (`dir /s /b %srv_loc%\plugins\org.eclipse.equi
 
 :: Launch jdtls
 java ^
+	-cp %lmb_loc% ^
+	-javaagent:%lmb_loc% ^
 	-Declipse.application=org.eclipse.jdt.ls.core.id1 ^
 	-Dosgi.bundles.defaultStartLevel=4 ^
 	-Declipse.product=org.eclipse.jdt.ls.core.product ^
