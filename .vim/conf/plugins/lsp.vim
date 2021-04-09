@@ -52,7 +52,7 @@ if executable('pyls')
 endif
 
 " Java language server
-if executable('jdtls')
+if executable('jdtls') || isdirectory(glob('~/.local/opt/jdtls'))
     " Install from distro repositories || build it from source
     let g:jdtls_script = g:lsp_dir . 'jdtls' . (has('win32') ? '.bat' : '.sh')
     au User lsp_setup call lsp#register_server({
