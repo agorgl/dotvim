@@ -60,6 +60,10 @@ if executable('jdtls')
         \ 'cmd': {server_info->[g:jdtls_script, lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..')]},
         \ 'whitelist': ['java'],
         \ })
+    au User lsp_setup call lsp#register_command(
+        \ 'java.apply.workspaceEdit',
+        \ {ctx -> lsp#utils#workspace_edit#apply_workspace_edit(ctx['command']['arguments'][0])}
+        \ )
 endif
 
 " HTML language server
