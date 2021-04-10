@@ -1,9 +1,15 @@
+"--------------------------------------------------------------------
+" Filetype Mappings
+"--------------------------------------------------------------------
 " Make .h files C filetype by default
 augroup filetype_h
     autocmd!
     autocmd BufRead,BufNewFile *.h set filetype=c
 augroup END
 
+"--------------------------------------------------------------------
+" Background Coloring
+"--------------------------------------------------------------------
 fun! s:load_extra_colors()
     let lines = readfile(expand('$VIMRUNTIME/rgb.txt'))
     let color_map = {}
