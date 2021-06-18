@@ -96,7 +96,7 @@ if executable('jdtls') || isdirectory(glob('~/.local/opt/jdtls'))
         \     'java': {
         \       'format': {
         \         'settings': {
-        \           'url': 'file://' . g:lsp_dir . '/eclipse-java-style.xml',
+        \           'url': lsp#utils#path_to_uri(g:lsp_dir . 'eclipse-java-style.xml'),
         \         },
         \         'comments': {
         \           'enabled': v:false,
