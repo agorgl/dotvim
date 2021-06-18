@@ -263,6 +263,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
     nmap <buffer>  K <Plug>(lsp-hover)
+    nmap <buffer> qf <Plug>(lsp-code-action)
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre * call execute('LspDocumentFormatSync')
