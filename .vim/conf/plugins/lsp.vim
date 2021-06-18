@@ -73,6 +73,18 @@ if executable('jdtls') || isdirectory(glob('~/.local/opt/jdtls'))
     au User lsp_setup call lsp#register_server({
         \ 'name': 'jdtls',
         \ 'cmd': {server_info->[g:jdtls_script, lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..')]},
+        \ 'workspace_config': {
+        \     'java': {
+        \       'format': {
+        \         'settings': {
+        \           'url': 'file://' . g:lsp_dir . '/eclipse-java-style.xml',
+        \         },
+        \         'comments': {
+        \           'enabled': v:false,
+        \         },
+        \       }
+        \     }
+        \   },
         \ 'whitelist': ['java'],
         \ })
     au User lsp_setup call lsp#register_command(
