@@ -56,6 +56,25 @@ if executable('rust-analyzer')
     call lsp#register_command('rust-analyzer.applySourceChange', function('s:rust_analyzer_apply_source_change'))
 endif
 
+" Go language server
+if executable('gopls')
+    " Install from distro repositories || build it from source
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls']},
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'go.mod'))},
+        \ 'initialization_options': {
+        \   'completeUnimported': v:true,
+        \   'matcher': 'fuzzy',
+        \   'codelenses': {
+        \     'generate': v:true,
+        \     'test': v:true,
+        \     },
+        \   },
+        \ 'allowlist': ['go', 'gomod'],
+        \ })
+endif
+
 " Python language server
 if executable('pyls')
     " pip install python-language-server
