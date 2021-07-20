@@ -167,6 +167,17 @@ if executable('yaml-language-server')
         \ })
 endif
 
+" TailwindCSS language server
+if executable('tailwindcss-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'tailwindcss-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'tailwindcss-language-server --stdio']},
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tailwind.config.js'))},
+        \ 'initialization_options': {},
+        \ 'whitelist': ['css', 'less', 'sass', 'scss', 'vue'],
+        \ })
+endif
+
 " Omnicompletion source
 call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
         \ 'name': 'omni',
