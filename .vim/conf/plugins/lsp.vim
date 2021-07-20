@@ -16,7 +16,7 @@ if executable('ccls')
       \ 'initialization_options': {
       \     'cache': {'directory': g:tmp_dir . '/ccls-cache'},
       \     'completion': {'detailedLabel': v:false},
-      \     'compilationDatabaseCommand': expand('$HOME/.vim/conf/plugins/lsp/make_compile_db.py')
+      \     'compilationDatabaseCommand': g:lsp_dir . 'make_compile_db.py'
       \   },
       \ 'whitelist': ['c', 'cc', 'cpp', 'objc', 'objcpp'],
       \ })
