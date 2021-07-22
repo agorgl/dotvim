@@ -40,6 +40,10 @@ let g:lightline = extend(get(g:, 'lightline', {}), s:lightline, "keep")
 " Whitespace component
 "
 function! LightlineWhitespaceComponent()
+  " Skip terminal buffers
+  if &buftype == 'terminal'
+    return ''
+  endif
   " Check for trailing whitespace
   " Must not have space after the last non-whitespace character
   let trailing = search('\s$', 'nw')
