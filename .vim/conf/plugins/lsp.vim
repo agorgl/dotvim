@@ -24,7 +24,7 @@ endif
 
 " Rust language server
 if executable('rust-analyzer')
-    " rustup component add rls rust-analysis rust-src
+    " Install from distro repositories || build it from source
     au User lsp_setup call lsp#register_server({
         \ 'name': 'rust-analyzer',
         \ 'cmd': {server_info->['rust-analyzer']},
