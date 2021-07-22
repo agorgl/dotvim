@@ -26,8 +26,12 @@ let s:lightline = {
   \   },
   \   'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
   \   'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
-  \   'tabline_separator': { 'left': "\ue0b8", 'right': "\ue0be" },
-  \   'tabline_subseparator': { 'left': "\ue0b9", 'right': "\ue0b9" }
+  \   'tabline': {
+  \     'left': [['tabs']],
+  \     'right': [[]]
+  \   },
+  \   'tabline_separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+  \   'tabline_subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
   \ }
 
 let g:lightline = extend(get(g:, 'lightline', {}), s:lightline, "keep")
