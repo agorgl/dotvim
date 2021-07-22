@@ -146,6 +146,8 @@ Plug 'sjl/badwolf'
 Plug 'srcery-colors/srcery-vim'
 " Onedark
 Plug 'joshdick/onedark.vim'
+" Onehalf
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Sonokai
 Plug 'sainnhe/sonokai'
 " Edge
