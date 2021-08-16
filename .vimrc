@@ -279,6 +279,12 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 noremap YY "+y
 noremap PP "+p
 
+" Navigate through tabs
+nnoremap <silent> <Esc>n :tabnext<CR>
+nnoremap <silent> <Esc>p :tabprev<CR>
+tnoremap <silent> <Esc>n <C-W>:tabnext<CR>
+tnoremap <silent> <Esc>p <C-W>:tabprev<CR>
+
 "--------------------------------------------------------------
 " => Helper functions
 "--------------------------------------------------------------
