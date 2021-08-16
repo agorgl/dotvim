@@ -46,6 +46,10 @@ fun! s:setup_molokai()
     call s:lightline_set_theme('deus')
 endfun
 
+fun! s:setup_srcery()
+    let g:srcery_hard_black_terminal_bg = 0
+endfun
+
 "
 " Setup dispatcher
 "
