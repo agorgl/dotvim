@@ -269,7 +269,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> qf <Plug>(lsp-code-action)
 
     let g:lsp_format_sync_timeout = 1000
-    autocmd! BufWritePre * call execute('LspDocumentFormatSync')
+    autocmd! BufWritePre *.rs,*.go,*.hs,*.py,*.java call execute('LspDocumentFormatSync')
 endfunction
 
 augroup lsp_install
