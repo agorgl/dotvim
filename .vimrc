@@ -180,6 +180,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 " Snippet plugin
 Plug 'SirVer/ultisnips'
+" Markdown preview plugin
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 
 "
 " -# Tools #-
