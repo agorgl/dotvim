@@ -27,9 +27,16 @@ java \
     -Declipse.application=org.eclipse.jdt.ls.core.id1 \
     -Dosgi.bundles.defaultStartLevel=4 \
     -Declipse.product=org.eclipse.jdt.ls.core.product \
+    -Dlog.level=VERBOSE \
     -noverify \
-    -Xms1G \
     -jar ${srv_loc}/plugins/org.eclipse.equinox.launcher_*.jar \
     -configuration "${tmp_dir}/config_linux" \
     -data "${tmp_dir}/workspace" \
+    --add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED \
+    -XX:+AggressiveOpts `# Turn on performance compiler optimizations` \
+    -XX:PermSize=512m -XX:MaxPermSize=512m `# Increase permanent generation space (where new objects are allocated)` \
+    -Xms512m -Xmx2048m `# Increase min and max heap sizes (which includes young and tenured generations)` \
+    -Xmn512m `# Increase heap size for the young generation` \
+    -Xss2m `# Set stack size for each thread` \
+    -XX:+UseG1GC -XX:+UseLargePages `# Tweak garbage collection` \
     "$@"
