@@ -7,6 +7,18 @@ augroup filetype_h
     autocmd BufRead,BufNewFile *.h set filetype=c
 augroup END
 
+" Detect and change yaml to kubernetes yaml filetype
+function s:detect_kubernetes() abort
+    if did_filetype() || (&ft != '' && &ft != 'yaml')
+        return
+    endif
+    let l:first_line = getline(1)
+    if l:first_line =~# '^\(kind\|apiVersion\): '
+        set filetype=yaml.kubernetes
+    endif
+endfunction
+autocmd BufNewFile,BufRead,BufEnter * call s:detect_kubernetes()
+
 "--------------------------------------------------------------------
 " Background Coloring
 "--------------------------------------------------------------------
