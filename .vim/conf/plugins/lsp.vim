@@ -141,7 +141,8 @@ if executable('yaml-language-server')
    au User lsp_setup call lsp#register_server({
         \ 'name': 'yaml-language-server',
         \ 'cmd': {server_info->['yaml-language-server', '--stdio']},
-        \ 'whitelist': ['yaml.kubernetes', 'yaml.ansible'],
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+        \ 'whitelist': ['yaml.kubernetes'],
         \ 'workspace_config': {
         \   'yaml': {
         \     'validate': v:true,
@@ -150,9 +151,11 @@ if executable('yaml-language-server')
         \     'customTags': [],
         \     'schemas': {
         \       'kubernetes': ["/*.yaml", "/*.yml"],
-        \       'https://raw.githubusercontent.com/docker/cli/master/cli/compose/schema/data/config_schema_v3.9.json': ['/docker-compose.yml'],
         \     },
-        \     'schemaStore': { 'enable': v:true },
+        \     'schemaStore': {
+        \       'url': 'https://www.schemastore.org/json/',
+        \       'enable': v:true
+        \       },
         \     }
         \   }
         \ })
