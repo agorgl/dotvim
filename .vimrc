@@ -277,6 +277,9 @@ endif
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
+" Make yanking with capital Y behave like the other capital letters
+nnoremap Y y$
+
 " Easier copy paste mappings
 noremap YY "+y
 noremap PP "+p
