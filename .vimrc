@@ -183,6 +183,8 @@ Plug 'tpope/vim-commentary'
 Plug 'SirVer/ultisnips'
 " Markdown preview plugin
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
+" ASCII box drawing plugin
+Plug 'gyim/vim-boxdraw'
 
 "
 " -# Tools #-
