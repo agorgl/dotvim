@@ -6,7 +6,11 @@
 let g:NERDTreeDirArrows = 1
 
 " Ignore
-let g:NERDTreeIgnore = ['\v[\/]\.(git|hg|svn)$[[dir]]', '\v(bin|lib|tmp|build|target|__pycache__)$[[dir]]', '\v\.(exe|so|dll|obj|o|class|pyc)$[[file]]']
+let g:NERDTreeIgnore = [
+  \ '\v[\/]\.(git|hg|svn)$[[dir]]',
+  \ '\v(bin|lib|tmp|build|target|__pycache__)$[[dir]]',
+  \ '\v\.(exe|so|dll|obj|o|class|pyc)$[[file]]'
+  \ ]
 
 " Map toggle
 nnoremap <silent> <F2> :<C-U>NERDTreeToggle<CR>
