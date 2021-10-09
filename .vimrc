@@ -53,6 +53,7 @@ set showcmd                    " Show incomplete cmds down the bottom
 set showmode                   " Show current mode down the bottom
 set hlsearch                   " Highlight search terms
 set incsearch                  " Show search matches as you type
+set mouse=a                    " Enable mouse in terminals supporting it
 
 " No sounds
 set noerrorbells
