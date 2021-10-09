@@ -12,8 +12,9 @@ fun! s:term_exit_cb(job, st)
 endfun
 
 fun! s:term_run(cmd)
+    tabnew
     let buf = term_start(a:cmd, {
-      \ "term_rows": 10,
+      \ "curwin": v:true,
       \ "term_kill": "int",
       \ "exit_cb": function('s:term_exit_cb')
       \ })
