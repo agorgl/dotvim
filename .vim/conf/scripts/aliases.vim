@@ -28,10 +28,10 @@ fun! RunTermCmd(cmd)
             execute "bd!" . s:term_buf
             let s:term_buf = 0
         endif
-        let pwin = winnr()
+        let pwin = win_getid()
         let tbuf = s:term_run(a:cmd)
         let s:term_buf = tbuf
-        execute pwin . "wincmd w"
+        call win_gotoid(pwin)
     else
         echo 'Already running!'
     endif
