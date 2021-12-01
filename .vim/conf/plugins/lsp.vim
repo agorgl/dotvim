@@ -168,6 +168,21 @@ if executable('tailwindcss-language-server')
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'tailwindcss-language-server --stdio']},
         \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tailwind.config.js'))},
         \ 'initialization_options': {},
+        \ 'workspace_config': {
+        \     'tailwindCSS': {
+        \       'validate': v:true,
+        \       'lint' : {
+        \         'cssConflict': 'warning',
+        \         'invalidApply': 'error',
+        \         'invalidScreen': 'error',
+        \         'invalidVariant': 'error',
+        \         'invalidConfigPath': 'error',
+        \         'invalidTailwindDirective': 'error',
+        \         'recommendedVariantOrder': 'warning'
+        \       },
+        \       'classAttributes': ['class', 'className', 'classList', 'ngClass']
+        \     }
+        \   },
         \ 'whitelist': ['css', 'less', 'sass', 'scss', 'vue'],
         \ })
 endif
