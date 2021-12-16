@@ -209,6 +209,7 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'yami-beta/asyncomplete-omni.vim'
+Plug 'micchy326/lightline-lsp-progress'
 
 "
 " -# Languages #-

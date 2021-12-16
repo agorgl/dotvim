@@ -9,7 +9,7 @@ let s:lightline = {
   \   'colorscheme': 'deus',
   \   'active': {
   \     'left': [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']],
-  \     'right': [['whitespace'], ['percent', 'lineinfo'], ['filetype', 'fileencoding', 'fileformat']]
+  \     'right': [['whitespace'], ['percent', 'lineinfo'], ['filetype', 'fileencoding', 'fileformat'], ['lsp_status']]
   \   },
   \   'component': {
   \     'percent': '%p%%',
@@ -20,6 +20,7 @@ let s:lightline = {
   \   },
   \   'component_function': {
   \     'gitbranch': 'fugitive#head',
+  \     'lsp_status': 'lightline_lsp_progress#progress',
   \   },
   \   'component_type': {
   \     'whitespace': 'warning',
