@@ -23,12 +23,14 @@ autocmd BufNewFile,BufRead,BufEnter * call s:detect_kubernetes()
 " Background Coloring
 "--------------------------------------------------------------------
 fun! s:load_extra_colors()
-    let lines = readfile(expand('$VIMRUNTIME/rgb.txt'))
+    let colors = keys(v:colornames)
     let color_map = {}
-    for line in lines
-        let name = matchstr(line, '^\(\d\+\s\+\)\{3}\zs.*$')
-        let rgb = split(line)[0:2]
-        let color_map[name] = rgb
+    for name in colors
+        let value = v:colornames[name]
+        let r = str2nr(value[0:1], 16)
+        let g = str2nr(value[2:3], 16)
+        let b = str2nr(value[4:5], 16)
+        let color_map[name] = [r, g, b]
     endfor
     return color_map
 endfun
