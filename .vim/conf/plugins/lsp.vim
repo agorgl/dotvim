@@ -271,6 +271,12 @@ endfun
 call s:setup_popup_colors()
 call s:setup_background_colors()
 
+augroup lsp_colors
+    autocmd!
+    autocmd ColorScheme * call s:setup_popup_colors()
+                      \ | call s:setup_background_colors()
+augroup END
+
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
