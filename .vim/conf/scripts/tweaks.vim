@@ -20,6 +20,33 @@ endfunction
 autocmd BufNewFile,BufRead,BufEnter * call s:detect_kubernetes()
 
 "--------------------------------------------------------------------
+" Number/Sign columns Coloring
+"--------------------------------------------------------------------
+fun! s:match_column_colors()
+    " Get sign column bg colors
+    let guibg = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'gui')
+    if empty(l:guibg)
+        let guibg = "NONE"
+    endif
+    let cterm = synIDattr(synIDtrans(hlID('SignColumn')), 'bg', 'cterm')
+    if empty(l:cterm)
+        let cterm = "NONE"
+    endif
+
+    " Set line number column bg colors to sign column bg colors
+    exec 'hi LineNr' .
+                \' guibg=' . l:guibg .
+                \' ctermbg=' . l:cterm
+endfun
+
+call s:match_column_colors()
+
+augroup column_colors
+    autocmd!
+    autocmd ColorScheme * call s:match_column_colors()
+augroup END
+
+"--------------------------------------------------------------------
 " Background Coloring
 "--------------------------------------------------------------------
 fun! s:load_extra_colors()
