@@ -288,6 +288,9 @@ nnoremap Y y$
 noremap YY "+y
 noremap PP "+p
 
+" Clear highlight
+nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+
 " Navigate through tabs
 nnoremap <silent> <Esc>n :tabnext<CR>
 nnoremap <silent> <Esc>p :tabprev<CR>
