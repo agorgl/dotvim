@@ -195,11 +195,14 @@ call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
         \ 'completor': function('asyncomplete#sources#omni#completor')
         \  }))
 
-" Debugging
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = g:tmp_dir . '/vim-lsp.log'
+" Enable progress
 let g:lsp_work_done_progress_enabled = 1
-let g:asyncomplete_log_file = g:tmp_dir . '/asyncomplete.log'
+
+" Debugging
+if get(g:, 'lsp_log_verbose', 0) == 1
+    let g:lsp_log_file = g:tmp_dir . '/vim-lsp.log'
+    let g:asyncomplete_log_file = g:tmp_dir . '/asyncomplete.log'
+end
 
 " Enable signs
 let g:lsp_signs_enabled = 1
