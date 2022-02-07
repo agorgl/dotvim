@@ -58,3 +58,37 @@ map <Esc>[15;2~ <S-F5>
 nnoremap <silent> <F5> :call RunTermCmd(g:build_cmd)<CR>
 nnoremap <silent> <C-F5> :call RunTermCmd(g:clean_cmd)<CR>
 nnoremap <silent> <S-F5> :call StopTermCmd()<CR>
+
+"
+" Colorscheme aliases
+"
+let s:colorschemes = [
+  \ 'molokai',
+  \ 'badwolf',
+  \ 'srcery',
+  \ 'one',
+  \ 'onedark',
+  \ 'onehalfdark',
+  \ 'sonokai',
+  \ 'edge',
+  \ 'tender',
+  \ 'pencil',
+  \ 'tokyonight',
+  \ 'apprentice',
+  \ 'lucius',
+  \ 'jellybeans',
+  \ 'dracula',
+  \ 'deus',
+  \ 'gruvbox',
+  \ 'everforest',
+  \ 'nord',
+  \ ]
+
+fun! CycleColorschemes()
+    let i = index(s:colorschemes, g:colors_name)
+    let j = (i + 1) % len(s:colorschemes)
+    let next_colorscheme = s:colorschemes[j]
+    exec 'colorscheme  ' . l:next_colorscheme
+    colorscheme
+endfun
+nnoremap <silent> <F8> :call CycleColorschemes()<CR>
