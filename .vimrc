@@ -1,6 +1,6 @@
 "--------------------------------------------------------------
 " Sections:
-"   -> Plugins Manager Setup
+"   -> Plugin Manager Setup
 "   -> General
 "   -> Internal Plugins
 "   -> Installed Plugins
