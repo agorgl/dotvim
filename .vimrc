@@ -145,6 +145,8 @@ Plug 'tomasr/molokai'
 Plug 'sjl/badwolf'
 " Srcery
 Plug 'srcery-colors/srcery-vim'
+" Vim One
+Plug 'rakr/vim-one'
 " Onedark
 Plug 'joshdick/onedark.vim'
 " Onehalf
@@ -165,6 +167,16 @@ Plug 'romainl/Apprentice'
 Plug 'jonathanfilip/vim-lucius'
 " Jellybeans
 Plug 'nanotech/jellybeans.vim'
+" Dracula
+Plug 'dracula/vim', { 'as': 'dracula' }
+" Deus
+Plug 'ajmwagar/vim-deus'
+" Gruvbox
+Plug 'morhetz/gruvbox'
+" Everforest
+Plug 'sainnhe/everforest'
+" Nord
+Plug 'arcticicestudio/nord-vim'
 
 "
 " -# Editing #-
